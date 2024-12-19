@@ -1,4 +1,5 @@
-# Mapping Understorey ACT Rural Areas
+# Mapping Understorey of Rural Areas in Australian Capital Territory
+
 In this project, grass cover in rural areas of the ACT, Australia was categorised into native/exotic and C3/C4 for efficient management.
 
 
