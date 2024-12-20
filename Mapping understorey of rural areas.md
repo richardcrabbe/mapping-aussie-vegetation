@@ -46,6 +46,15 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |B2 (blue) |land monitoring|10|
 |B3 (green) |land monitoring|10|
 |B4 (red) |land monitoring|10|
+|B5 (red-edge) |land monitoring|20|
+|B6 (red-edge) |land monitoring|20|
+|B7 (red-edge) |land monitoring|20|
+|B8 (near infrared) |land monitoring|10|
+|B8a (near infrared) |land monitoring|20|
+|B9 (water) |water vapour correction|60|
+|B10 (cirrus) |cirrus detection|60|
+|B11 (shortwave infrared) |land monitoring|20|
+|B12 (shortwave infrared) |land monitoring|20|
 
 
 #### Spectral indices
