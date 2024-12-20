@@ -40,7 +40,7 @@ The overarching aim of the project is to map the understorey vegetation communit
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency. The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale.
 
 
-|Bands|Key use|Resolution (m)|
+|Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
 |B2 (blue) |land monitoring|10|
@@ -57,7 +57,7 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |B12 (shortwave infrared) |land monitoring|20|
 
 
-In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring.
+In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring. To ensure that theh recorded energy were those from the targets of interest, the top of atmosphere Sentinel-2 images retrieved from the the Copernicus Open Access Hub via Google Earth Engine were preprocessed to minimise the influence of atmospheric conditions, sun-sensor viewing geometry, and topography. The Sentinel-2 TOA imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. Sensor insentive radiative transfer model based on MODIS product was used for the atmospheric correction. The imagery was then corrected for bidirection reflectance and topographic influence using a high resolution (5m) digital elevation model (DEM) obtained from the Geoscience Australia via Google Earth Engine. The DEM was used to compute elevation, slope, and aspect to radiometrically normalize reflectance. 
 
 
 #### Spectral indices
