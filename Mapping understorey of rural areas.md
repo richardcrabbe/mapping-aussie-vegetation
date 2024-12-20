@@ -40,8 +40,8 @@ The overarching aim of the project is to map the understorey vegetation communit
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency. The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale.
 
 
-|-----|--------|----------|
-|-----|---|-----|
+|Bands|Description|Resolution (m)|
+|B1 (Coastal aerosol|marine studies|60|
 
 
 #### Spectral indices
