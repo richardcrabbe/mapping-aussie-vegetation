@@ -10,7 +10,7 @@ In this project, grass cover in rural areas of the ACT, Australia was categorise
 ## Introduction
 
 The overarching aim of the project is to map the understorey vegetation communities of rural areas in the Australian Capital Territory. To this end, the specific objectives include: <br>
-a, discriminating between exotic, native and native high diversity grassland <br>
+- discriminating between exotic, native and native high diversity grassland <br>
 
 b, discriminating between C3 and C4 exotic grasses <br>
 
