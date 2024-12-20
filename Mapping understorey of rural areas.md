@@ -57,6 +57,9 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |B12 (shortwave infrared) |land monitoring|20|
 
 
+In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring.
+
+
 #### Spectral indices
 
 
