@@ -41,6 +41,7 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 
 
 |Bands|Description|Resolution (m)|
+|----|----|---|-----|
 |B1 (Coastal aerosol|marine studies|60|
 
 
