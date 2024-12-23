@@ -106,7 +106,7 @@ The NASA SRTM was used to compute elevation, slope, and aspect, and were used to
 
 ### Random forest classification
 
-
+Random Forest classification is a decision tree ensemble algorithm widely used for land cover monitoring as it is not limited by data structure and minimises overfitting the data. Additionally, the RF is computationally less expensive to implement as only few hyperparameters require tuning.  
 
 #### Partitioning reference data
 
