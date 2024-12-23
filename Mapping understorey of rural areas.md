@@ -64,7 +64,7 @@ In this project, the Sentinel-2 spectral bands, including B2, B3, B4, B5, B6, B7
 
 #### Spectral indices
 
-The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The table below details the spectral indices used. 
+The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The spectrall indices, include the normalised vegetation index (NDVI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI). The others were green chlorophyll vegetation index (GCVI), plant senescence reflectance index (PSRI), and bare soil index (BSI). The table below details the spectral indices used. 
 
 
 |Index|Formula|Reference| 
@@ -74,7 +74,7 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 |EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |GCVI|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
 |PSRI  |((Red-Blue)÷Red)×Red-edge 2)|[Merzlyak et al.,1999](http://dx.doi.org/10.1034/j.1399-3054.1999.106119.x)|
-|BSI |[(SWIR+Red)-(NIR+Blue)]÷[(SWIR+Red)+(NIR+Blue)]|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
+|BSI |[(SWIR2+Red)-(NIR+Blue)]÷[(SWIR2+Red)+(NIR+Blue)]|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
 |B7 (red-edge) |land monitoring|20|
 |B7 (red-edge) |land monitoring|20|
 
