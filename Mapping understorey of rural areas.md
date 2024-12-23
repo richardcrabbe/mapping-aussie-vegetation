@@ -85,7 +85,7 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 
 Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) weree explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels through via geographic directions.Through a frequency distribution, statistics such as contrast, homogeneity, dissimilarity, entropy and angular second moment are computed to describe the spatial relationships.  In GEE, several GLCM textural metrics can be computed but the most relevant ones to this study were utilised. These GLCM metrics were CON, HOM, DIS, ENT, and ASM. The GLCM textural analysis requires a single-band grey-scale imagery, thus, a method by Tassi et al. 2022 to leverage off the NIR, Red, and Blue bands as used. 
 
-$' (0.30×NIR)+(0.59×Red)+(0.11×Green)$'
+$'\ (0.30×NIR)+(0.59×Red)+(0.11×Green)$'
 
 
 #### Phenological variables
