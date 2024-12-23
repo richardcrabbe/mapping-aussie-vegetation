@@ -97,7 +97,7 @@ The biophysical conditions of plant species, including annual and perennial gras
 
 ### Topographic variables
 
-
+The NASA SRTM was used to compute elevation, slope, and aspect, and were used to discriminate the plant types. 
 
 
 ### Selecting optimal variables 
