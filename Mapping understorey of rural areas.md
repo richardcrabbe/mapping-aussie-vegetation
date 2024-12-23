@@ -67,11 +67,11 @@ In this project, the land monitoring bands were used as they provide high resolu
 The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the highest resolution (10m) bands and were relevant to the project were utilised. The table below details the spectral indices used. 
 
 
-|Index|Formula|Reference|
+|Index|Formula|Reference| https://doi.org/10.1016/S0034-4257(02)00096-2
 |:----|:----|:---|
-|NDVI|(NIR-Red)÷(NIR+Red)|[Rouse et al. 1973](https://ntrs.nasa.gov/citations/19740022614)|
+|NDVI|(NIR-Red)÷(NIR+Red)|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
 |SAVI|((NIR-Red)÷(NIR+Red+0.5))× 1.5|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
-|B5 (red-edge) |land monitoring|20|
+|EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |B6 (red-edge) |land monitoring|20|
 |B7 (red-edge) |land monitoring|20|
 |B8 (near infrared) |land monitoring|10|
