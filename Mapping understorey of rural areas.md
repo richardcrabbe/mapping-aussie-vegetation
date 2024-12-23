@@ -83,7 +83,7 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 
 #### Textural and segmentataion 
 
-
+Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) weree explored as it is widely used in similar studies.
 
 
 #### Phenological variables
