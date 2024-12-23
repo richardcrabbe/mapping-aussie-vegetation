@@ -5,6 +5,7 @@ In this project, grass cover in rural areas of the ACT, Australia was categorise
 
 ## Abstract
 
+Grasslands are an important global terrestrial biome as they provide a range of ecosystem services, including a refugia for thretened plants,, birds, mammals and reptiles. In Australia, grasslands are also a source of feed for livestock. The grasslands are managed to minimise weed invasion, fire attacks, soil erosion and displacement owing to agricultural expansion.
 
 
 ## Introduction
