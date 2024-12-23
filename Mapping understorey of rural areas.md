@@ -43,28 +43,28 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
-|B2 (blue) |land monitoring|10|
-|B3 (green) |land monitoring|10|
-|B4 (red) |land monitoring|10|
-|B5 (red-edge) |land monitoring|20|
-|B6 (red-edge) |land monitoring|20|
-|B7 (red-edge) |land monitoring|20|
-|B8 (near infrared) |land monitoring|10|
-|B8a (near infrared) |land monitoring|20|
-|B9 (water) |water vapour correction|60|
-|B10 (cirrus) |cirrus detection|60|
-|B11 (shortwave infrared) |land monitoring|20|
-|B12 (shortwave infrared) |land monitoring|20|
+|B2 (Blue) |land monitoring|10|
+|B3 (Green) |land monitoring|10|
+|B4 (Red) |land monitoring|10|
+|B5 (Red-edge 1) |land monitoring|20|
+|B6 (Red-edge 2) |land monitoring|20|
+|B7 (Red-edge 3) |land monitoring|20|
+|B8 (Near infrared) |land monitoring|10|
+|B8A (Red-edge 4) |land monitoring|20|
+|B9 (Water vapour |water vapour correction|60|
+|B10 (Cirrus) |cirrus detection|60|
+|B11 (Shortwave infrared 1) |land monitoring|20|
+|B12 (Shortwave infrared 2) |land monitoring|20|
 
 
-In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring. To ensure that the recorded energy were those reflected off the targets of interest, the top of atmosphere Sentinel-2 images retrieved from the Copernicus Open Access Hub via Google Earth Engine were preprocessed to minimise the influence of atmospheric conditions, sun-sensor viewing geometry, and topography. The Sentinel-2 TOA imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. Sensor insentive radiative transfer model leveraging off MODIS product was used for the atmospheric correction [(Yin et al., 2022)](https://doi.org/10.5194/gmd-15-7933-2022). The imagery was also corrected for bidirection reflectance and topographic influence to produce analysis ready data referred to as NBART from here on. A global digital elevation model (DEM) made available through the NASA Shuttle Radar Topography Mission (SRTM) obtained via Google Earth Engine was used to minimise biases due to the relief of the plots. Image pixels affected by cloud and cloud shadow were eliminated using the quality assesssment bands. The project adapted the pre-analysis techniques for obtaining analysis ready NBART products by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695). Since the Sentinel-2 satellites acquire data at different native spatial resolutions, the imagery obtained at spectral bands with 10m resolution were spatially upscaled to 20m using the nearest neighbourhood geometric resampling method to preserve the original reflecance values. The DEM was used to compute elevation, slope, and aspect to radiometrically normalize reflectance. 
+In this project, the Sentinel-2 spectral bands, including B2, B3, B4, B5, B6, B7, B8,B8A B11, B12, were used as they provide high resolution imagery and suited for vegetation monitoring. To ensure that the recorded energy were those reflected off the targets of interest, the top of atmosphere Sentinel-2 images retrieved from the Copernicus Open Access Hub via Google Earth Engine were preprocessed to minimise the influence of atmospheric conditions, sun-sensor viewing geometry, and topography. The Sentinel-2 TOA imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. Sensor insentive radiative transfer model leveraging off MODIS product was used for the atmospheric correction [(Yin et al., 2022)](https://doi.org/10.5194/gmd-15-7933-2022). The imagery was also corrected for bidirection reflectance and topographic influence to produce analysis ready data referred to as NBART from here on. A global digital elevation model (DEM) made available through the NASA Shuttle Radar Topography Mission (SRTM) obtained via Google Earth Engine was used to minimise biases due to the relief of the plots. Image pixels affected by cloud and cloud shadow were eliminated using the quality assesssment bands. The project adapted the pre-analysis techniques for obtaining analysis ready NBART products by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695). Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 10m resolution were spatially upscaled to 20m using the nearest neighbourhood geometric resampling method to preserve the original reflecance values and harmonise the data. The DEM was used to compute elevation, slope, and aspect to radiometrically normalize reflectance. 
 
 
 
 
 #### Spectral indices
 
-The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the highest resolution (20m) bands and relevant to the project were utilised. The table below details the spectral indices used. 
+The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The table below details the spectral indices used. 
 
 
 |Index|Formula|Reference| 
@@ -73,6 +73,9 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 |SAVI|((NIR-Red)÷(NIR+Red+0.5))× 1.5|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
 |EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |GCVI|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
+|PSRI  |((Red-Blue)÷Red)×Red-edge 2)|[Merzlyak et al.,199](http://dx.doi.org/10.1034/j.1399-3054.1999.106119.x)|
+|BSI |[(SWIR+Red)-(NIR+Blue)]÷[(SWIR+Red)+(NIR+Blue)]|[Bera et al., 2020(https://doi.org/10.1007/s42489-020-00060-1)|
+|B7 (red-edge) |land monitoring|20|
 |B7 (red-edge) |land monitoring|20|
 
 
