@@ -57,14 +57,14 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |B12 (shortwave infrared) |land monitoring|20|
 
 
-In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring. To ensure that the recorded energy were those reflected off the targets of interest, the top of atmosphere Sentinel-2 images retrieved from the Copernicus Open Access Hub via Google Earth Engine were preprocessed to minimise the influence of atmospheric conditions, sun-sensor viewing geometry, and topography. The Sentinel-2 TOA imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. Sensor insentive radiative transfer model leveraging off MODIS product was used for the atmospheric correction [(Yin et al., 2022)](https://doi.org/10.5194/gmd-15-7933-2022). The imagery was also corrected for bidirection reflectance and topographic influence to produce analysis ready data referred to as NBART from here on. A global digital elevation model (DEM) made available through the NASA Shuttle Radar Topography Mission (SRTM) obtained via Google Earth Engine was used to minimise biases due to the relief of the plots. Image pixels affected by cloud and cloud shadow were eliminated using the quality assesssment bands. The project adapted the pre-analysis techniques for obtaining analysis ready NBART products by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695). The DEM was used to compute elevation, slope, and aspect to radiometrically normalize reflectance. 
+In this project, the land monitoring bands were used as they provide high resolution imagery and suited for vegetation monitoring. To ensure that the recorded energy were those reflected off the targets of interest, the top of atmosphere Sentinel-2 images retrieved from the Copernicus Open Access Hub via Google Earth Engine were preprocessed to minimise the influence of atmospheric conditions, sun-sensor viewing geometry, and topography. The Sentinel-2 TOA imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. Sensor insentive radiative transfer model leveraging off MODIS product was used for the atmospheric correction [(Yin et al., 2022)](https://doi.org/10.5194/gmd-15-7933-2022). The imagery was also corrected for bidirection reflectance and topographic influence to produce analysis ready data referred to as NBART from here on. A global digital elevation model (DEM) made available through the NASA Shuttle Radar Topography Mission (SRTM) obtained via Google Earth Engine was used to minimise biases due to the relief of the plots. Image pixels affected by cloud and cloud shadow were eliminated using the quality assesssment bands. The project adapted the pre-analysis techniques for obtaining analysis ready NBART products by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695). Since the Sentinel-2 satellites acquire data at different native spatial resolutions, the imagery obtained at spectral bands with 10m resolution were spatially upscaled to 20m using the nearest neighbourhood geometric resampling method to preserve the original reflecance values. The DEM was used to compute elevation, slope, and aspect to radiometrically normalize reflectance. 
 
 
 
 
 #### Spectral indices
 
-The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the highest resolution (10m) bands and were relevant to the project were utilised. The table below details the spectral indices used. 
+The NBART was analysed to derive spectral indices that measure the biophysical and chemical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the highest resolution (20m) bands and relevant to the project were utilised. The table below details the spectral indices used. 
 
 
 |Index|Formula|Reference| 
@@ -72,14 +72,9 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 |NDVI|(NIR-Red)÷(NIR+Red)|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
 |SAVI|((NIR-Red)÷(NIR+Red+0.5))× 1.5|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
 |EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
-|B6 (red-edge) |land monitoring|20|
+|GCVI|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
 |B7 (red-edge) |land monitoring|20|
-|B8 (near infrared) |land monitoring|10|
-|B8a (near infrared) |land monitoring|20|
-|B9 (water) |water vapour correction|60|
-|B10 (cirrus) |cirrus detection|60|
-|B11 (shortwave infrared) |land monitoring|20|
-|B12 (shortwave infrared) |land monitoring|20|
+
 
 
 
