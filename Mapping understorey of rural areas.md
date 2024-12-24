@@ -102,6 +102,7 @@ The NASA SRTM was used to compute elevation, slope, and aspect, and were used to
 
 ### Selecting optimal variables 
 
+Separability index involving all the predictor variables was computed to remove redundant variables.
 
 
 ### Random forest classification
