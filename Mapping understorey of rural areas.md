@@ -29,7 +29,25 @@ The overarching aim of the project is to map the understorey vegetation communit
 
 
 
+![image](https://github.com/user-attachments/assets/49059f02-64c1-4fbf-b80c-a706067dc977)
+
+
+
+
+
+
+
+
 ### Field data
+
+
+
+
+![image](https://github.com/user-attachments/assets/7bdb329b-5694-4768-87bd-c44d8e40fe3b)
+
+
+
+
 The ground reference data was collected from 2018 until the end of 2023, in which visual discrimination of grasses were conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to 400m2 (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coorodinates of a plot were collected using a differential GPS with a sub-meter horizontal accuracy. In each plot, the observer recorded the botanical composition including a fraction of vegetation cover and bare soil. Further, the grasses were separated into perennial/annual, C3/C4 with the level of plant diversity recorded. Post-field processing of the data was done to it clean up, removing bad rows and columns of data. This data was used to build, train and validate machine learning models.
 
 
@@ -39,6 +57,11 @@ The ground reference data was collected from 2018 until the end of 2023, in whic
 ### Sentinel-2 satellite imagery
 
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency. The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale.
+
+
+
+
+
 
 
 |Band (description)|Key use|Resolution (m)|
