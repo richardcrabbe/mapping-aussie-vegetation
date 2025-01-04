@@ -28,6 +28,9 @@ The overarching aim of the project is to map the understorey vegetation communit
 
 
 
+The study area is the ACT of Australia.
+
+
 
 ![image](https://github.com/user-attachments/assets/49059f02-64c1-4fbf-b80c-a706067dc977)
 
@@ -39,6 +42,11 @@ The overarching aim of the project is to map the understorey vegetation communit
 
 
 ### Field data
+
+
+Field data used as reference data was collected by the ACT government.
+
+
 
 
 
