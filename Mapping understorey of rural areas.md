@@ -12,11 +12,10 @@ Grasslands are an important global terrestrial biome as they provide a range of 
 
 Grasslands are globally ubiquitous, except Antarctica, making it one of the dominant biomes covering approximately 45% of the Earth's terrestrial ecosystems. While glasslands provide habitats for plants, mammals, birds, and reptiles, it contributes approximately 20% of the global soil carbon stocks. Tropical and subtropical grasslands are found mainly in Africa and Australia. In Australia, grasslands provide a range of ecosystem services, including fodder for livestock, refugia for threatened plant and animal species, and protection of soil. 
 The overarching aim of the project is to map the understorey vegetation communities of rural areas in the Australian Capital Territory. To this end, the specific objectives include: <br>
-- discriminating between exotic, native and native high diversity grassland <br>
 
-- discriminating between C3 and C4 exotic grasses <br>
+- differentiating between exotic, native and native high diversity grass <br>
 
-- discriminating between dominant grass species <br>
+ - differentiating between dominant native grass species, including kangaroo grass, spear grass and Phalaris <br>
 
 - evaluating the performance of machine learning models explored
 
@@ -46,7 +45,7 @@ The study area is described by the figure below.
 ### Field data
 
 
-The figure below is an overview of the study methodology.
+The figure below is an overview of the methodology.
 
 
 
