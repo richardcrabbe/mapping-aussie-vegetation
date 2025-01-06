@@ -122,11 +122,11 @@ Naturally, spatial relationships exist between the grass types and this should b
 
 |Index|Formula|Description|Reference| 
 |:----|:----|:---|:---|
-|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)|
-|IDM|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
-|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
-|AVG|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
-|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|[Merzlyak et al.,1999](http://dx.doi.org/10.1034/j.1399-3054.1999.106119.x)|
+|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$||[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|IDM|$$\sum_{i,j=0}^{N-1}  P_{i,j}/1+ \left( {i-j} \right)^2 $$||[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$||[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|AVG|(NIR-Green)-1||[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$||[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
 
 
 
