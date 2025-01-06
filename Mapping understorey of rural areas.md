@@ -27,7 +27,7 @@ The overarching aim of the project is to map the understorey vegetation communit
 
 
 
-The study area is described by the figure below. 
+The location of the study area is the grasland areas of the ACT, Australia and this is represented by the figure below. 
 
 
 
