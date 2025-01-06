@@ -156,10 +156,6 @@ The biophysical conditions of plant species, including annual and perennial gras
 
 The NASA  Shuttle Radar Topography Mission (SRTM), a global topographic data, was obtained from the GEE data archive to compute elevation, slope, and aspect.  The NASA SRTM elevation data has a pixel size of approximately 30m, this was adjusted to match the Sentinel-2 pixels before computing the topographic variables. The elevation, slope and aspect images were added to the composite images from Sentinel-2 and Sentinel-1 to make a single image of several bands.
 
-### Selecting optimal variables 
-
-Separability index involving all the predictor variables was computed to remove redundant variables.
-
 
 ### Random forest classification
 
