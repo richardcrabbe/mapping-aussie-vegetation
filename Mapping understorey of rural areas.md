@@ -92,7 +92,7 @@ In this project, the Sentinel-2 spectral bands, excluding B1, B5, B6, B7, B8A, B
 
 #### Spectral indices
 
-The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The spectral indices, include the normalised vegetation index (NDVI), normalised water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). The table below details the spectral indices and principal references.  
+The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The spectral indices, include the normalised vegetation index (NDVI), normalised water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). The table below details the spectral indices, formulae and principal references.  
 
 
 |Index|Formula|Reference| 
