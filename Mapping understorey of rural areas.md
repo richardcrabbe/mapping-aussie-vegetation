@@ -111,7 +111,24 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 
 #### Textural and segmentataion 
 
-Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics sourced from the works of [Haralick](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners](https://sdoi.org/10.1016/0734-189X(84)90197-X) can be computed. However, the relevance of the metrics is study-specific and for this reason only five of the metrics were explored in this study. These were sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
+Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics sourced from the works of [Haralick](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners](https://sdoi.org/10.1016/0734-189X(84)90197-X) can be computed. However, the relevance of the metrics is study-specific and for this reason only five of the metrics were explored in this study. These were sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metric are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
+
+
+
+
+|Metric|Formula|Description|Reference| 
+|:----|:----|:---|:---|
+|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Measure local contrast|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|Measure homogeneity|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|Measure randomness in grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|Measure mean grey-levels|[Hall-Beyer, 2017](https://doi.org/10.1080/01431161.2016.1278314)
+|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|Measure the spread of grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+
+
+
+To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
+
+
 
 
 **$\(0.30×NIR)+(0.59×Red)+(0.11×Green)$** 
@@ -119,22 +136,7 @@ Naturally, spatial relationships exist between the grass types and this should b
 
 
 
-
-|Index|Formula|Description|Reference| 
-|:----|:----|:---|:---|
-|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Captures local contrast|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|Captures homogeneity|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|Captures raandomness in grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|Captures mean grey-levels|[Hall-Beyer, 2017](https://doi.org/10.1080/01431161.2016.1278314)
-|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|Measures spread of grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-
-
-
-
-
-
-
-Image segmentation is another method to explore the capability of the Sentinel-2 data to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) was used to segment the Sentinel-2 pixels into spectral clusters. The clusters produced from the SNIC were used for the discrimination of grass types.
+Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The clusters produced from the SNIC were used for the discrimination of grass types.
 
 #### Phenological variables
 
