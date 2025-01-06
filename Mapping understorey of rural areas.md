@@ -163,7 +163,7 @@ Separability index involving all the predictor variables was computed to remove 
 
 ### Random forest classification
 
-Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as it is not limited by data structure and minimises overfitting the data [Breiman, 2000)[https://doi.org/10.1023/A:1010933404324]. Additionally, the RF is computationally less expensive to implement as only few hyperparameters require tuning.  The RF operates by randomly selecting a proportion of the instances to train a decision tree, wile replacing the samples to be re-used in the next iteration. Sampling a subset of instances with replacement to create decision trees is referred to as boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final descision tree is obtained through majority voting. The figure below explains how the Random Forest classification algirthm functions. The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, number of the predictor variables to use and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*, respectively.  The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1-10, while *bagFraction* was by increment of 10 with the maximum limit being 90%. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
+Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as it is not limited by data structure and minimises overfitting the data [Breiman, 2000)[https://doi.org/10.1023/A:1010933404324]. Additionally, the RF is computationally less expensive to implement as only few hyperparameters require tuning.  The RF operates by randomly selecting a proportion of the instances to train a decision tree, wile replacing the samples to be re-used in the next iteration. Sampling a subset of instances with replacement to create decision trees is referred to as boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final descision tree is obtained through majority voting. The figure below explains how the Random Forest classification algorithm functions. The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, number of the predictor variables to use and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*, respectively.  The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1-10, while *bagFraction* was by increment of 10 with the maximum limit being 90%. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
 
 
 
@@ -176,25 +176,18 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 
 
-#### Partitioning reference data
+#### Data partitioning, selecting optimal predictors and classification
 
+The reference data was used to randomly sample pixels for each cover class, which was then split into two sets with 80% of the samples representing the training set while the remaining was used for evaluating the accuracy of the Random Forest classifier. A Random Forest classification model was trained using the predictor variables and optimal hyperparameter values in probability mode to predict cover classes. The predictor variables were assessed to remove redundant variables. Methods such as correlation analysis, principal component analysis and separability indices have been used to select the optimal predictor variables for RF models. However, in this work, we used the mean decrease impurity method which is built-into the RF algorithm in the GEE. Once the best predictor variables were identified (the top 15 variables) a parsimonius RF model was created using these variables. The RF classifier was applied to the class cover to produce probability maps for each class cover. The class probability maps
 
+"A decision tree and Monte-Carlo simulation were used to create the final land cover assemblage. The decision tree was used to set the order and thresholds used to combine each of the primitives together into one final land cover map. The decision tree was run 100 times with a Monte-Carlo simulation process [85]. The Monte-Carlo process entailed adding a grid with random numbers to each of the primitives. It produces a final land cover map, which is the mode of the 100 simulations and a probability map which is the count of the mode divided by the total number of model runs."
 
-#### Tuning hyperparameters
-
-
-
-#### Create and train Random Forest model
-
-
-
-#### Classify Sentinel-2 imagery
 
 
 
 #### Evaluate the Random Forest model
 
-
+The test set was used to evaluate the accuracy of the RF classifier in that user's accuracy, prouducer's accuracy, F-1 score were computed from a confusion matrix table. Additionally, the distribution of class probabilities were produced.
 
 
 
