@@ -128,6 +128,9 @@ Naturally, spatial relationships exist between the grass types and this should b
 
 
 
+ASM = Angular Second Moment and IDM = Inverse Difference Moment. Pi,j refers to the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window. Regarding the GLCM Correlation, µ is mean and σ the standard deviation.
+
+
 To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
 
 
