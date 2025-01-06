@@ -102,7 +102,7 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 |SAVI|$$\left({NIR-Red}\over{NIR+Red+0.5}\right)×{1.5}$$|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
 |EVI |$$\left({NIR-Red}\over{NIR+6×Red-7.5×Blue+1}\right)× {2.5}$$|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |GCVI|$$\left({NIR}\over{Green}\right)-{1}$$|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
-|BSI |$$\left({SWIR2+Red}-{NIR+Blue}\right)\over\left({SWIR2+Red}+{NIR+Blue}\right)$$|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
+|BSI |$$\left({(SWIR2+Red)}-{(NIR+Blue)}\right)\over\left({(SWIR2+Red)}+{(NIR+Blue)}\right)$$|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
 
 
 
