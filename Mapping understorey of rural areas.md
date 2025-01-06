@@ -123,7 +123,7 @@ To compute the GLCM metrics in GEE, the grey-scale image was converted to 8-bit 
 
 |Index|Formula|Reference| 
 |:----|:----|:---|
-|CON|$$\left( \sum_{k=1}^{N-1} a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
+|CON|$$\left( \sum_{i,j=0}^{N-1} a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)$$|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
 |SAVI|((NIR-Red)÷(NIR+Red+0.5))× 1.5|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
 |EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |GCVI|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
