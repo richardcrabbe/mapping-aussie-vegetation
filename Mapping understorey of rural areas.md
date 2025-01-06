@@ -203,3 +203,14 @@ The test set was used to evaluate the accuracy of the RF classifier in that user
 
 
 ## References
+
+
+Achanta, R., & Susstrunk, S. (2017). Superpixels and Polygons Using Simple Non-iterative Clustering. 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 4895–4904. https://doi.org/10.1109/CVPR.2017.520
+Amarasingam, N., E Kelly, J., Sandino, J., Hamilton, M., Gonzalez, F., L Dehaan, R., Zheng, L., & Cherry, H. (2024). Bitou bush detection and mapping using UAV-based multispectral and hyperspectral imagery and artificial intelligence. Remote Sensing Applications: Society and Environment, 34, 101151. https://doi.org/10.1016/j.rsase.2024.101151
+Amarasingam, N., Hamilton, M., Kelly, J. E., Zheng, L., Sandino, J., Gonzalez, F., Dehaan, R. L., & Cherry, H. (2023). Autonomous Detection of Mouse-Ear Hawkweed Using Drones, Multispectral Imagery and Supervised Machine Learning. Remote Sensing, 15(6), 1633. https://doi.org/10.3390/rs15061633
+Bannari, A., Morin, D., Bonn, F., & Huete, A. R. (1995). A review of vegetation indices. Remote Sensing Reviews, 13(1–2), 95–120. https://doi.org/10.1080/02757259509532298
+
+
+
+
+
