@@ -111,18 +111,18 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 
 #### Textural and segmentataion 
 
-Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics sourced from the works of [Haralick](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners](https://sdoi.org/10.1016/0734-189X(84)90197-X) can be computed. However, the relevance of the metrics is study-specific and for this reason only five of the metrics were explored in this study. These were sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metric are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
+Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM, a second order statistical analysis of an image, is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics sourced from the works of [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners et al., 1984](https://sdoi.org/10.1016/0734-189X(84)90197-X) can be computed. However, the relevance of the metrics is study-specific and for this reason only five of the metrics were explored in this study. These were sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metric are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
 
 
 
 
-|Metric|Formula|Description|Reference| 
-|:----|:----|:---|:---|
-|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Measure local contrast|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|Measure homogeneity|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|Measure randomness in grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
-|AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|Measure mean grey-levels|[Hall-Beyer, 2017](https://doi.org/10.1080/01431161.2016.1278314)
-|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|Measure the spread of grey-levels|[Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314)
+|Metric|Formula|Description|
+|:----|:----|:---|
+|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Measure local contrast|
+|IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|Measure homogeneity|
+|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|Measure randomness in grey-levels|
+|AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|Measure mean grey-levels|
+|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|Measure the spread of grey-levels|
 
 
 
