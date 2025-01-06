@@ -33,7 +33,7 @@ The study area is described by the figure below.
 
 
 
-![image](https://github.com/user-attachments/assets/49059f02-64c1-4fbf-b80c-a706067dc977)
+![image](https://github.com/user-attachments/assets/fe06ba49-ea94-490c-91c4-daeb8150b0fd)
 
 
 
@@ -42,10 +42,10 @@ The study area is described by the figure below.
 
 
 
-### Field data
 
 
-The figure below is an overview of the methodology.
+
+The methodology was adapted from recent similar studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831), [Tassi et al., 2022](https://doi.org/10.3390/rs12223776), and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) . The figure below is an overview of the methodology.
 
 
 
@@ -56,6 +56,8 @@ The figure below is an overview of the methodology.
 
 
 
+
+### Field data
 
 The ground reference data was collected from 2018 until the end of 2023, in which visual discrimination of grasses were conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to 400m^2 (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coorodinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. In each plot, the observer recorded the botanical composition including a fraction of vegetation cover and bare soil. Further, the grasses were separated into perennial/annual, C3/C4 with the level of plant diversity recorded. Post-field processing of the data was done to clean it up, removing bad rows and columns of data. This data was used to build, train and validate machine learning models.
 
@@ -136,7 +138,7 @@ To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Alth
 
 
 
-Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi and Vizzari, 2020] (https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used a predictor variable.
+Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used a predictor variable.
 
 
 Annual image collection for the spectral indices, GLCM textural metrics and SNIC clusters were created and from which composites such as maximum, medoid, 20th and 80th percentile spectral information were computed. Annual is defined as the period from June to May the following year to  mark the phenological growth calendar of the plants. 
