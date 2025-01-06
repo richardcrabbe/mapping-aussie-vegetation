@@ -59,7 +59,9 @@ The methodology was adapted from recent similar studies, including [Poortinga et
 
 ### Reference data
 
-The ground reference data was collected from 2018 to 2023 (inclusisve), in which visual discrimination of grasses were conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to 400<sup>2 {(i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coorodinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. In each plot, the observer recorded the botanical composition including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4 with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier}.
+The ground reference data was collected from 2018 to 2023 (inclusisve), in which visual discrimination of grasses were conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to 400m<sup>2 <br>
+
+(i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coorodinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. In each plot, the observer recorded the botanical composition including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4 with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier}.
 
 
 
