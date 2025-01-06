@@ -65,12 +65,7 @@ The ground reference data was collected from 2018 until the end of 2023, in whic
 
 ### Sentinel-2 satellite imagery
 
-Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency. The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale.
-
-
-
-
-
+Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency. The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
 
 |Band (description)|Key use|Resolution (m)|
@@ -116,7 +111,29 @@ The NBART was analysed to derive spectral indices that measure the biophysical a
 
 #### Textural and segmentataion 
 
-Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through a frequency distribution, statistics such as sum average (AVG), variance (VAR), correlation (COR), contrast (CON), inverse distance moment (IDM), entropy (ENT) and angular second moment (ASM) were computed as the GLCM metrics to describe the spatial relationships.  In GEE, several GLCM textural metrics can be computed but the most relevant ones to this study were utilised. These GLCM metrics were CON, HOM, DIS, ENT, and ASM. The GLCM textural analysis requires a single-band grey-scale imagery, thus, a method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging off the NIR, Red, and Blue bands was used. A linear combination of the bands was used as:\ $\(0.30×NIR)+(0.59×Red)+(0.11×Green)$. To compute the GLCM metrics in GEE, the grey-scale image was converted to 8-bit for efficient
+Naturally, spatial relationships exist between the grass types and this should be accounted for. In image analysis, this relationship can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies (REFERENCES). The GLCM textural method is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through a frequency distribution, statistics such as sum average (AVG), variance (VAR), correlation (COR), contrast (CON), inverse distance moment (IDM), entropy (ENT) and angular second moment (ASM) were computed as the GLCM metrics to describe the spatial relationships.  In GEE, several GLCM textural metrics can be computed but the most relevant ones to this study were utilised. These GLCM metrics were CON, HOM, DIS, ENT, and ASM. The GLCM textural analysis requires a single-band grey-scale imagery, thus, a method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging off the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
+
+$\(0.30×NIR)+(0.59×Red)+(0.11×Green)$. 
+
+To compute the GLCM metrics in GEE, the grey-scale image was converted to 8-bit for efficient performance of the algorithm.
+
+
+
+|Index|Formula|Reference| 
+|:----|:----|:---|
+|NDVI|(NIR-Red)÷(NIR+Red)|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
+|SAVI|((NIR-Red)÷(NIR+Red+0.5))× 1.5|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
+|EVI |((NIR-Red)÷(NIR+6×Red-7.5×Blue+1))× 2.5|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
+|GCVI|(NIR-Green)-1|[Gitelson et al., 2003](https://doi.org/10.1078/0176-1617-00887)|
+|PSRI  |((Red-Blue)÷Red)×Red-edge 2)|[Merzlyak et al.,1999](http://dx.doi.org/10.1034/j.1399-3054.1999.106119.x)|
+|BSI |[(SWIR2+Red)-(NIR+Blue)]÷[(SWIR2+Red)+(NIR+Blue)]|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
+|B7 (red-edge) |land monitoring|20|
+|B7 (red-edge) |land monitoring|20|
+
+
+
+
+
 
 Image segmentation is another method to explore the capability of the Sentinel-2 data to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) was used to segment the Sentinel-2 pixels into spectral clusters. The clusters produced from the SNIC were used for the discrimination of grass types.
 
