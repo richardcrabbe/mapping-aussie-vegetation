@@ -45,7 +45,7 @@ The location of the study area is the grasland areas of the ACT, Australia and t
 
 
 
-The methodology was adapted from recent similar studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831), [Tassi et al., 2022](https://doi.org/10.3390/rs12223776), and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) . The figure below is an overview of the methodology.
+The methodology was adapted from recent similar studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831), [Tassi et al., 2022](https://doi.org/10.3390/rs12223776), and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) and was implemented using Google Earth Engine JavaScript API. The figure below is an overview of the methodology.
 
 
 
