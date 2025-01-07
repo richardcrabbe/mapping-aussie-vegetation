@@ -48,7 +48,9 @@ The location of the study area is the grasland areas of the ACT, Australia, repr
 
 
 
-![image](https://github.com/user-attachments/assets/aafaff09-ecf7-4569-a99e-c90376f47570)
+![image](https://github.com/user-attachments/assets/aafaff09-ecf7-4569-a99e-c90376f47570)|
+|:--:|
+| *Fig. 1. The study location with red pixels showing grassland areas investigated.*|
 
 
 
