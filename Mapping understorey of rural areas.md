@@ -30,13 +30,14 @@ The aim of this study is to differentiate grassland types in lowland ACT to supp
 
 
 
-The location of the study area is the grasland areas of the ACT, Australia and this is represented by the figure below. 
+The location of the study area is the grasland areas of the ACT, Australia, represented by the figure below. 
 
 
 
 
 
-![image](https://github.com/user-attachments/assets/fe06ba49-ea94-490c-91c4-daeb8150b0fd)
+![image](https://github.com/user-attachments/assets/aafaff09-ecf7-4569-a99e-c90376f47570)
+
 
 
 
