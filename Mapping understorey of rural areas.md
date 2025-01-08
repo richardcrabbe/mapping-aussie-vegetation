@@ -90,7 +90,7 @@ The ground reference data was collected from 2018 to 2023 (inclusisve), in which
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
 
-|:--:|
+
 | *Table. 1. An overview of the workflow, including the datasets and principal methods employed.*|
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
