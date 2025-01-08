@@ -32,7 +32,7 @@ This study aims to differentiate grassland types in lowland ACT to support the A
 
 
 
-The location of the study area is the grassland areas of the ACT, Australia, represented by the figure below. 
+The location of the study area is the grassland areas of the ACT, Australia, represented by Fig. 1. 
 
 
 
@@ -53,7 +53,7 @@ The location of the study area is the grassland areas of the ACT, Australia, rep
 ### Workflow
 
 
-The figure below is an overview of the cardinal workflow. 
+Fig. 2 is an overview of the cardinal workflow. 
 
 
 
@@ -81,11 +81,11 @@ The ground reference data was collected from 2018 to 2023 (inclusive), in which 
 
 ### Sentinel-2 satellite imagery
 
-Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, carries a multispectral instrument that collects optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
+Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, carries a multispectral instrument that collects optical imagery of differing native resolutions at a planetary scale. Table 1 describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
 
 
-*Table. 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
+*Table 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
@@ -108,10 +108,10 @@ In this project, the Sentinel-2 spectral bands were used as they provide high re
 
 #### Spectral indices
 
-The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices were obtained from the bands applying different arithmetic operations; despite the many spectral indices available in literature, only those that require the nominal resolution (20m) bands and are relevant to the project were utilised. The spectral indices, include the normalised difference vegetation index (NDVI), normalised difference water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). The table below details the spectral indices, formulae and principal references.  
+The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices were obtained from the bands applying different arithmetic operations; despite the many spectral indices available in literature, only those that require the nominal resolution (20m) bands and are relevant to the project were utilised. The spectral indices, include the normalised difference vegetation index (NDVI), normalised difference water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). Table 2 details the spectral indices, formulae and principal references.  
 
 
-*Table. 2. Spectral indices derived from the Sentinel-2 imagery. NIR = near infrared and SWIR = shortwave infrared.*
+*Table 2. Spectral indices derived from the Sentinel-2 imagery. NIR = near infrared and SWIR = shortwave infrared.*
 |Index|Formula|Reference| 
 |:----|:----|:---|
 |NDVI|$${NIR-Red}\over{NIR+Red}$$|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
@@ -127,11 +127,11 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 
 #### Textural and segmentataion 
 
-Naturally, spatial relationships exist between the grass types, and this can be leveraged to improve discrimination between species. In image analysis, the spatial relationship between pixels can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies, including [Mohammadpour et al., 2022](https://doi.org/10.3390/rs14184585), [Zhang et al., 2024](https://doi.org/10.1080/15481603.2024.2385170), and [Bazzo et al., 2024](https://doi.org/10.1016/j.ecoinf.2024.102813). The GLCM, a second order statistical analysis of an image, is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics, sourced from the works of [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners et al., 1984](https://sdoi.org/10.1016/0734-189X(84)90197-X), can be calculated. However, the relevance of the metrics is study-specific, and for this reason, only five of the metrics were explored in this study. These were the sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metrics are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
+Naturally, spatial relationships exist between the grass types, and this can be leveraged to improve discrimination between species. In image analysis, the spatial relationship between pixels can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies, including [Mohammadpour et al., 2022](https://doi.org/10.3390/rs14184585), [Zhang et al., 2024](https://doi.org/10.1080/15481603.2024.2385170), and [Bazzo et al., 2024](https://doi.org/10.1016/j.ecoinf.2024.102813). The GLCM, a second order statistical analysis of an image, is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics, sourced from the works of [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners et al., 1984](https://sdoi.org/10.1016/0734-189X(84)90197-X), can be calculated. However, the relevance of the metrics is study-specific, and for this reason, only five of the metrics were explored in this study (Table 3). These were the sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metrics are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
 
 
 
-*Table. 3. Grey level co-occurrence metrics derived from the Sentinel-2, including contrast (CON), inverse difference moment (IDM), entropy (ENT), average (AVG) and variance (VAR) of grey levels. N is the sample size, while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
+*Table 3. Grey level co-occurrence metrics derived from the Sentinel-2, including contrast (CON), inverse difference moment (IDM), entropy (ENT), average (AVG) and variance (VAR) of grey levels. N is the sample size, while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
 |Metric|Formula|Description|
 |:----|:----|:---|
 |CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|local contrast|
@@ -174,7 +174,7 @@ The NASA  Shuttle Radar Topography Mission (SRTM), a global topographic data, wa
 
 ### Random forest classification
 
-Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as the RF is not limited by data structure and minimises overfitting the data [Breiman, 2000](https://doi.org/10.1023/A:1010933404324). Additionally, the RF is computationally less expensive to implement as only a few hyperparameters require tuning.  The RF randomly selects a proportion of the instances to train a decision tree while replacing the samples to be re-used in the next iteration. Sampling a subset of the instances with replacement to create decision trees is called boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final decision tree is obtained through majority voting. The figure below summarises how the Random Forest classification algorithm functions. The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, the number of the predictor variables to use, and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*.  The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1 and 10. The *bagFraction* ranged between 10% and 90% at an interval of 10. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
+Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as the RF is not limited by data structure and minimises overfitting the data [Breiman, 2000](https://doi.org/10.1023/A:1010933404324). Additionally, the RF is computationally less expensive to implement as only a few hyperparameters require tuning.  The RF randomly selects a proportion of the instances to train a decision tree while replacing the samples to be re-used in the next iteration. Sampling a subset of the instances with replacement to create decision trees is called boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final decision tree is obtained through majority voting. Fig. 3 summarises how the Random Forest classification algorithm functions. The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, the number of the predictor variables to use, and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*. The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1 and 10. The *bagFraction* ranged between 10% and 90% at an interval of 10. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
 
 
 
