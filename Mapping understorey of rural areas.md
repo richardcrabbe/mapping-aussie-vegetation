@@ -42,7 +42,7 @@ This study aims to differentiate grassland types in lowland ACT to support the A
 
 
 
-The location of the study area is the grasland areas of the ACT, Australia, represented by the figure below. 
+The location of the study area is the grassland areas of the ACT, Australia, represented by the figure below. 
 
 
 
@@ -63,7 +63,7 @@ The location of the study area is the grasland areas of the ACT, Australia, repr
 
 
 
-The figure below is an overview of the cardinal workflow. The methodology was adapted from recent similar studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831), [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776), and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) and was implemented using Google Earth Engine JavaScript API. The previous studies that implemented similar land cover classification workflow reported a prediction accuracy ranging from 82% to 91%. The Google Earth Engine (GEE) is a cloud-based platform offering a combination of satellite imagery (including Landsat, MODIS, and Sentinel) and other geospatial datasets, integrated development environment and algorithms to make planet-scale remote sensing analysis and sharing of results easy ([Gorelick et al., 2017](https://doi.org/10.1016/j.rse.2017.06.031)). The GEE entails large-scale computing resources accessible via JavaScript API and Python API, and is automatically synced with GitHub for easy project collaboration through code sharing and version control. 
+The figure below is an overview of the cardinal workflow. The methodology was adapted from similar recent studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831); [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776); and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) and was implemented using Google Earth Engine JavaScript API. The previous studies that implemented similar land cover classification workflow reported a prediction accuracy ranging from 82% to 91%. The Google Earth Engine (GEE) is a cloud-based platform offering a combination of satellite imagery (including Landsat, MODIS, and Sentinel) and other geospatial datasets, integrated development environment and algorithms to make planet-scale remote sensing analysis and sharing of results easy ([Gorelick et al., 2017](https://doi.org/10.1016/j.rse.2017.06.031)). The GEE entails large-scale computing resources accessible via JavaScript API and Python API, and is automatically synced with GitHub for easy project collaboration through code sharing and version control. 
 
 
 
@@ -79,7 +79,7 @@ The figure below is an overview of the cardinal workflow. The methodology was ad
 
 ### Reference data
 
-The ground reference data was collected from 2018 to 2023 (inclusive), in which visual discrimination of grasses were conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coorodinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. In each plot, the observer recorded the botanical composition including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4 with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier}.
+The ground reference data was collected from 2018 to 2023 (inclusive), in which visual discrimination of grasses was conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4, with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier.
 
 
 
@@ -87,7 +87,7 @@ The ground reference data was collected from 2018 to 2023 (inclusive), in which 
 
 ### Sentinel-2 satellite imagery
 
-Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
+Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, carries a multispectral instrument that collects optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
 
 
