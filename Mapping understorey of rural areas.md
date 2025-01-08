@@ -129,8 +129,6 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 
 
 
-The NDVI, BSI, and a textural measure (i.e, GLCM contrast) derived from Sentinel-1 (see the section on Sentinel-1 for details) were combined using user-defined thresholds to mask out pixels that were not grassland.
-
 
 
 #### Textural and segmentataion 
@@ -158,6 +156,7 @@ To compute the GLCM metrics in GEE, an 8-bit grey-scale imagery is required. Alt
 **$\(0.30×NIR)+(0.59×Red)+(0.11×Green)$** 
 
 
+The GLCM contrast, NDVI, and BSI were combined using user-defined thresholds to mask out pixels that were not grassland.
 
 
 Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used as a predictor variable.
