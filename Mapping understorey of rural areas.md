@@ -91,7 +91,7 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 
 
 
-*Table. 1. An overview of the workflow, including the datasets and principal methods employed.*
+*Table. 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
@@ -117,6 +117,7 @@ In this project, the Sentinel-2 spectral bands were used as they provide high re
 The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices are obtained from the bands applying different arithmetric operations; despite there are many spectral indices only those that require the nominal resolution (20m) bands and relevant to the project were utilised. The spectral indices, include the normalised vegetation index (NDVI), normalised water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). The table below details the spectral indices, formulae and principal references.  
 
 
+*Table. 2. Spectral indices derived from the Sentinel-2 imagery. NIR = near infrared and SWIR = shortwave infrared.*
 |Index|Formula|Reference| 
 |:----|:----|:---|
 |NDVI|$${NIR-Red}\over{NIR+Red}$$|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
@@ -138,7 +139,7 @@ Naturally, spatial relationships exist between the grass types and this can be l
 
 
 
-
+*Table. 3. Greylevel co-occurrence metrics derived from the Sentinel-2,includingg contrast (CON), inverse difference moment (IDM), entropy (ENT), average AVG) and variance (VAR) of grey levels . N is the sample size while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
 |Metric|Formula|Description|
 |:----|:----|:---|
 |CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Measure local contrast|
