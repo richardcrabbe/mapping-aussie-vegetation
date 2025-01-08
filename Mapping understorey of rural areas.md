@@ -69,7 +69,9 @@ The figure below is an overview of the cardinal workflow. The methodology was ad
 
 
 
-![image](https://github.com/user-attachments/assets/7bdb329b-5694-4768-87bd-c44d8e40fe3b)
+![image](https://github.com/user-attachments/assets/7bdb329b-5694-4768-87bd-c44d8e40fe3b)|
+|:--:|
+| *Fig. 2. An overview of the workflow, including the datasets and principal methods employed.*|
 
 
 
@@ -88,6 +90,8 @@ The ground reference data was collected from 2018 to 2023 (inclusisve), in which
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, on-board satellites that carry sensors collecting optical imagery of differing native resolutions at a planetary scale. The table below describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
 
+|:--:|
+| *Table. 1. An overview of the workflow, including the datasets and principal methods employed.*|
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
@@ -148,7 +152,7 @@ Naturally, spatial relationships exist between the grass types and this can be l
 ASM = Angular Second Moment and IDM = Inverse Difference Moment. Pi,j refers to the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window. Regarding the GLCM Correlation, µ is mean and σ the standard deviation.
 
 
-To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
+To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi  and Vizzari., 2020](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
 
 
 
@@ -158,7 +162,7 @@ To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Alth
 
 
 
-Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi et al., 2022](https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used a predictor variable.
+Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used a predictor variable.
 
 
 Annual image collection for the spectral indices, GLCM textural metrics and SNIC clusters were created and from which composites such as maximum, medoid, 20th and 80th percentile spectral information were computed. The medoid is analogous to univariate median, but it is more insensitive to outliers and applicable to multi-dimensional data such as multispectral imagery. Further details on medoid is provided in ([Flood, 2013](https://doi.org/10.3390/rs5126481)). Annual is defined as the period from June to May the following year to  mark the phenological growth calendar of the plants. 
@@ -186,7 +190,9 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 
 
-![image](https://github.com/user-attachments/assets/0ed0f4bc-d2a9-4bda-a6b8-60d0ad633234)
+![image](https://github.com/user-attachments/assets/0ed0f4bc-d2a9-4bda-a6b8-60d0ad633234)|
+|:--:|
+| *Fig. 3. A schematic diagram summarising how the Random Forest algoirthm functions.*|
 
 
 
