@@ -139,7 +139,7 @@ Naturally, spatial relationships exist between the grass types and this can be l
 
 
 
-*Table. 3. Greylevel co-occurrence metrics derived from the Sentinel-2,includingg contrast (CON), inverse difference moment (IDM), entropy (ENT), average AVG) and variance (VAR) of grey levels . N is the sample size while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
+*Table. 3. Grey level co-occurrence metrics derived from the Sentinel-2, includingg contrast (CON), inverse difference moment (IDM), entropy (ENT), average (AVG) and variance (VAR) of grey levels. N is the sample size while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
 |Metric|Formula|Description|
 |:----|:----|:---|
 |CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|Measure local contrast|
@@ -148,9 +148,6 @@ Naturally, spatial relationships exist between the grass types and this can be l
 |AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|Measure mean grey-levels|
 |VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|Measure the spread of grey-levels|
 
-
-
-ASM = Angular Second Moment and IDM = Inverse Difference Moment. Pi,j refers to the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window. Regarding the GLCM Correlation, µ is mean and σ the standard deviation.
 
 
 To compute the GLCM metrics in GEE, a 8-bit grey-scale imagery is required. Although many approaches for selecting a single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi  and Vizzari., 2020](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
