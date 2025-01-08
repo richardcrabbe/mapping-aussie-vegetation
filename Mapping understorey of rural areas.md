@@ -91,7 +91,7 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 
 
 
-| *Table. 1. An overview of the workflow, including the datasets and principal methods employed.*|
+*Table. 1. An overview of the workflow, including the datasets and principal methods employed.*
 |Band (description)|Key use|Resolution (m)|
 |:----|:----|:---|
 |B1 (coastal aerosol) |aerosols correction|60|
