@@ -144,7 +144,7 @@ Naturally, spatial relationships exist between the grass types, and this can be 
 |IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|homogeneity|
 |ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|randomness in grey-levels|
 |AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|mean grey-levels|
-|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|spread of grey-levels|
+|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|spread in grey-levels|
 
 
 
