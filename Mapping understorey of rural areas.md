@@ -183,7 +183,7 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 ![image](https://github.com/user-attachments/assets/0ed0f4bc-d2a9-4bda-a6b8-60d0ad633234)|
 |:--:|
-| *Fig. 3. A schematic diagram summarising how the Random Forest algorithm functions.*|
+| *Fig. 3. A conceptual diagram summarising how the Random Forest algorithm functions.*|
 
 
 
