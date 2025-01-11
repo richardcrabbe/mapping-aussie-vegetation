@@ -59,7 +59,7 @@ Fig. 2 is an overview of the cardinal workflow.
 
 
 
-![image](https://github.com/user-attachments/assets/d3b8dab5-663f-4ac7-a6e7-140baba18b27)|
+![image](https://github.com/user-attachments/assets/30fd2cb9-38be-4f28-acc1-62c254bfdcff)|
 |:--:|
 | *Fig. 2. An overview of the workflow, including the datasets and principal methods employed.*|
 
@@ -75,9 +75,9 @@ The methodology was adapted from similar recent studies, including [Poortinga et
 
 The ground reference data was collected from 2018 to 2023 (inclusive), in which visual discrimination of grasses was conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4, with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier.
 
-The ACT Vegetation Map was used to identify the regions of interest. The ACT Vegetation Map is a spatial layer for which native and derived vegetation in the ACT have been classified into 64 plant communities utilising high-resolution aerial optical and LiDAR imagery (1-5m grid resolution), stereo pair interpretation, and large field data and existing reports ([ACT Government,2024](https://actmapi-actgov.opendata.arcgis.com/datasets/ACTGOV::actgov-vegetation-map-2023/about)). The scale of the ACT Vegetation Map is 1:10000 and the attributes table provides detailed description of the features, such as the dominant tree species, dominant shrub species, dominant ground cover species, canopy cover, understory and shrub cover, and vegetation community structure (i.e., woodland, forest, grassland). The grassland layer was retrieved from the ACT Vegetation Map using the vegetation community structure; this was done using QGIS 3.10. The grassland layer for lowland ACT was used as the regions of interest for the study.
+The ACT Vegetation Map was used to identify the regions of interest. The ACT Vegetation Map is a spatial layer for which native and derived vegetation in the ACT have been classified into 64 plant communities utilising high-resolution aerial optical and LiDAR imagery (1-5m grid resolution), stereo pair interpretation, and large field data and existing reports ([ACT Government, 2024](https://actmapi-actgov.opendata.arcgis.com/datasets/ACTGOV::actgov-vegetation-map-2023/about)). The scale of the ACT Vegetation Map is 1:10000 and the attributes table provides detailed description of the features, such as the dominant tree species, dominant shrub species, dominant ground cover species, canopy cover, understory and shrub cover, and vegetation community structure (i.e., woodland, forest, grassland). The grassland layer was retrieved from the ACT Vegetation Map using the vegetation community structure; this was done using QGIS 3.10. The grassland layer for lowland ACT was used as the regions of interest for the study.
 
-A digital elelvation model, with a ground sampling distance of 1m, acquired through a LiDAR survey over the ACT in 2020, was used to extract additional topographical variables, including slope, aspect, and ruggedness index using QGIS 3.10. Through the LiDAR data, the ACT government has created a canopy cover layer in both raster and vector file formats. In this study, the canopy cover raster layer was used to remove pixels that are not grasslands
+A digital elelvation model, with a ground sampling distance of 1m, acquired through a LiDAR survey over the ACT in 2020, was used to characterise the topography of the study regions. Through the LiDAR data, the ACT government has created a canopy cover layer in both raster and vector file formats. In this study, the canopy cover layer was used to remove pixels that are not grasslands
 
 
 
@@ -173,7 +173,7 @@ The biophysical conditions of plant species, including annual and perennial gras
 
 ### Topographic variables
 
-The NASA  Shuttle Radar Topography Mission (SRTM), a global topographic data, was obtained from the GEE data archive to compute elevation, slope, and aspect.  The NASA SRTM elevation data has a pixel size of approximately 30m, this was adjusted to match the Sentinel-2 pixels before computing the topographic variables. The elevation, slope and aspect images were added to the composite images from the Sentinel-2 and Sentinel-1 to compose a single image of several bands.
+The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, and ruggedness index, in QGIS 3.10. The pixel size of the DEM was 1m, so, all topographical variables were geometrically corrected to 10m using bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. In GEE, the elevation, slope, aspect, and ruggedness index images were added to the composite images from the Sentinel-2 and Sentinel-1 to compose a single image of several bands.
 
 
 ### Random forest classification
