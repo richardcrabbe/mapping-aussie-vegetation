@@ -71,9 +71,11 @@ The methodology was adapted from similar recent studies, including [Poortinga et
 
 
 
-### Reference data
+### ACT data
 
 The ground reference data was collected from 2018 to 2023 (inclusive), in which visual discrimination of grasses was conducted by experts from the ACT government. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to match the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover and bare soil. Further, the grasses were separated into native/exotic, perennial/annual, and C3/C4, with the level of plant diversity recorded. Post-field processing of the data was done, removing bad rows and columns of data. The reference data was used to build, train and validate the machine learning classifier.
+
+The ACT Vegetation Map was used to identify the regions of interest. The ACT Vegetation Map is a spatial layer for which native and derived vegetation in the ACT have been classified into 64 plant communities based off the use of high-resolution aerial optical and LiDAR imagery (1-5m grid resolution), stereo pair interpretation, and large field data and existing reports ([ACT Government,2024](https://actmapi-actgov.opendata.arcgis.com/datasets/ACTGOV::actgov-vegetation-map-2023/about)). The scale of the ACT Vegetation Map is 1:10000 and provides detailed description of the features, such as the dominant tree species, dominant shrub species, dominant ground cover species, canopy cover, understory and shrub cover, and vegetation community structure (i.e., woodland, forest, grassland). The grassland layer was retrieved from the ACT Vegetation Map using the vegetation community structure; this was done using QGIS 3. The grassland layer for lowland ACT was used as the regions of interest for the study.
 
 
 
