@@ -1,6 +1,6 @@
 # Mapping Understorey of Rural Areas in Australian Capital Territory
 
-In this project, the grassland communities in rural ACT, Australia, were categorised into native/native high diversity/exotic and native species types for efficient management.
+In this project, the grassland communities in rural ACT, Australia, were categorised into high quality native, low quality native and exotic species types for efficient management.
 
 
 ## Abstract
@@ -16,11 +16,11 @@ Satellite remote sensing provides a more cost-efficient approach for continuous 
 
 This study aims to differentiate grassland types in lowland ACT to support the ACT Native Grassland Conservation Strategy and Action Plans for efficient management of the Natural Temperate Grasslands, providing baseline for tracking changes and evaluating climate, anthropogenic and management practices on the grassland communities. To achieve this aim, the following specific objectives were addressed: <br> 
 
-- differentiate between exotic, native and native high diversity grass <br>
+- extract grassland pixels from a heterogeneous landscape
 
- - differentiate between dominant native grass species, including kangaroo grass, spear grass and Phalaris <br>
+- differentiate between exotic, high quality native and low quality native grass <br>
 
-- quantify the performance and uncertainty of a Random Forest classfication model
+- appraise the performance and uncertainty of a Random Forest classfication model
 
 
 ## Materials and Methods
@@ -67,17 +67,26 @@ Fig. 2 is an overview of the cardinal workflow.
 
 
 
-The methodology was adapted from similar recent studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831); [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776); and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) and was implemented using Google Earth Engine JavaScript API. The previous studies that implemented similar land cover classification workflow reported a prediction accuracy ranging from 82% to 91%. The Google Earth Engine (GEE) is a cloud-based platform offering a combination of satellite imagery (including Landsat, MODIS, and Sentinel) and other geospatial datasets, integrated development environment and algorithms to make planet-scale remote sensing analysis and sharing of results easy ([Gorelick et al., 2017](https://doi.org/10.1016/j.rse.2017.06.031)). The GEE entails large-scale computing resources accessible via JavaScript API and Python API, and is automatically synced with GitHub for easy project collaboration through code sharing and version control. 
+The methodology was adapted from similar studies, including [Poortinga et al., 2019](https://doi.org/10.3390/rs11070831); [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776); and [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) and was implemented using Google Earth Engine JavaScript API and R. The previous studies that implemented similar land cover classification workflow reported a prediction accuracy ranging from 82% to 91%. The Google Earth Engine (GEE) is a cloud-based platform offering a combination of satellite imagery (including Landsat, MODIS, and Sentinel) and other geospatial datasets, integrated development environment and algorithms to make planet-scale remote sensing analysis and sharing of results easy ([Gorelick et al., 2017](https://doi.org/10.1016/j.rse.2017.06.031)). The GEE entails large-scale computing resources accessible via JavaScript API and Python API, and is automatically synced with GitHub for easy project collaboration through code sharing and version control. 
 
 
+
+### Software
+
+Google Earth Engine (GEE) Java Script API, R and QGIS were employed in this study. The GEE was used for image preprocessing, postprocessing, analysis and classification; the R was used for model development and evaluation; and QGIS was used for the preparation of the final map for visualisation purposes only. 
 
 ### ACT data
 
-Field survey data was collected from 2018 to 2023 (inclusive), in which experts from the ACT government conducted visual discrimination of grasses. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to suit the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover and bare soil. The vegetation cover comprised proportions of native C3 and C4 plants and exotic annual and perennial plants. Post-field processing of the data was done to remove bad data points. A ratio of the proportion of native plants to exotic perennials was computed and used to label plots, native or exotic, using a threshold of 0.5. If the ratio is larger than 0.5, the plot is labelled native; otherwise, the plot is presumed to be dominated by an exotic grass. The label data was used to build, train and validate the machine learning classifier.
+Field survey data was collected from 2019 to 2023 (inclusive), in which experts from the ACT government conducted visual discrimination of grasses. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to suit the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover, bare soil, and level of diversity categorised as low  quality native, moderate quality native and high quality native. The vegetation cover comprised proportions of native C3 and C4 plants and exotic annual and perennial plants. Post-field processing of the data was done to remove bad data points. The vegetation cover of the plots was varied, so plots with a minimum of 70% cover and contained level of diversity information were retained for the analysis. The high quality native and moderate quality native plots were merged to increase the sample size. 
+
+A ratio of the proportion of native plants to exotic perennials was computed and used to label plots, low quality native, high quality native or exotic, using a threshold of 0.5. If the ratio is larger than 0.5, the plot is labelled native; otherwise, the plot is presumed to be dominated by an exotic grass. The label data was used to build, train and validate the machine learning classifier.
 
 The ACT Vegetation Map and Plant Community Type (PCT) map layers were used to identify the regions of interest. The ACT Vegetation Map is a spatial layer for which native and derived vegetation in the ACT are classified into 64 plant communities utilising high-resolution aerial optical and LiDAR imagery (1-5m grid resolution), stereo pair interpretation, and extensive field data and existing reports ([ACT Government, 2024](https://actmapi-actgov.opendata.arcgis.com/datasets/ACTGOV::actgov-vegetation-map-2023/about)). The scale of the ACT Vegetation Map is 1:10000 and the attributes table provides a detailed description of the features, such as the dominant tree species, dominant shrub species, dominant ground cover species, canopy cover, understory and shrub cover, and vegetation community structure (i.e., woodland, forest, grassland). The PCT is another ACT map product that delineates the extent (via ongorund GPS  mapping) and ecological zones (via the assessment of attributes related to vegetation structure, floristic composition, and level of disturbance) of the plant communities ([ACT Government, 2024](https://cdn.arcgis.com/home/item.html?id=88e1076a4db243a797f7ce0f22b9db8d)). The ACT Vegetation Map and PCT contain grassland polygon features, which were retrieved using the spatial analysis tool in QGIS 3.10. The grassland layer for lowland ACT was used to identify the regions of interest for the study.
 
-A digital elevation model, with a ground sampling distance of 1m, acquired through a LiDAR survey over the ACT in 2020, was used to characterise the topography of the study regions. Through the LiDAR data, the ACT government has created a canopy cover layer in both raster and vector file formats. In this study, the canopy cover layer was used to remove pixels that are not grasslands
+A digital elevation model, with a ground sampling distance of 1m, acquired through a LiDAR survey over the ACT in 2020, was used to characterise the topography of the study regions. elevation, slope, Aspect, Eastness and northness
+
+
+Through the LiDAR data, the ACT government has created a canopy cover layer in both raster and vector file formats. In this study, the canopy cover layer was used to exclude pixels that were not grasslands.
 
 
 
