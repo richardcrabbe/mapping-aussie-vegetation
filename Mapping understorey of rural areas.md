@@ -168,7 +168,13 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 |BSI |$${(SWIR2+Red)}-{(NIR+Blue)}\over\{(SWIR2+Red)}+{(NIR+Blue)}$$|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
 
 
-*Table 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
+
+
+
+*Table 3. Covariates for 2019 only. The cohorts of the covariates derived from the Sentinel-2 imagery are spectral features (SP), spectral indices (SI), and statistic (STA). The phenology covariates (PHE) were derived from Sentinel-1, topographical covariates (TOP) were from the ACT LiDAR data and the spatial coordinates of the reference data representing the longitude and latitude (LL) covariates were used to account for spatial autocorrelation.*
+
+
+
 |Covariate|Cohort|Formula|Reference|
 |:----|:----|:---|:---|
 |blue|SP|| |
