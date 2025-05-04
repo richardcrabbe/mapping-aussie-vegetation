@@ -280,8 +280,9 @@ The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was us
 
 ### Other covariates
 
-The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation. In this study, we assumed that the reference label for sampling plots remained unchaged between years, meaning if plot A was labelled class X in 2019, the class ID will remain same in subsequent years. The longitude and latitude in decimal degrees were the covariates and remained same regardless of the study year.
+The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation. In this study, we assumed that the reference label for sampling plots remained unchaged between years, meaning if plot A was labelled class X in 2019, the class ID will remain same in other years. The longitude and latitude in decimal degrees were the covariates and remained same regardless of the study year.
 
+There were 65 covariates per the yearly composite of Sentinel-2 and Sentinel-1 imagery, making a total of 325 covariates for the five years. Plus, the topographic variables and spatial coordinates of the reference plots, 332 covariates were used for the image classification analysis.
 
 ### Random forest classification
 
@@ -295,18 +296,26 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 
 
-The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, the number of the predictor variables to use, and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*. The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1 and 10. The *bagFraction* ranged between 10% and 90% at an interval of 10. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
+
 
 
 #### Data partitioning, selecting optimal predictors and classification
 
-The reference data was used to randomly sample pixels for each cover class, which was then split into two sets, with 80% of the samples representing the training set, while the remaining was used for evaluating the accuracy of the RF model. 
+The reference data was used to randomly sample pixels for each cover class. The reference sample size was 3137, and this was split into train and test sets with 90% of the samples for model training and the remaining was used for evaluating the accuracy of the RF model. The training sample size was 2824 and the test set had 313 plots.
 
 
 #### Hyperparameter tuning
-A Random Forest classification model was trained using the predictor variables and optimal hyperparameter values in probability mode to predict cover classes. The predictor variables were assessed to remove redundant variables. Methods such as correlation analysis, principal component analysis and separability indices can be used to select the optimal predictor variables for RF models. However, in this study, we used the mean decrease impurity method ([Breiman, 2000](https://doi.org/10.1023/A:1010933404324)), which is built into the RF algorithm in the GEE and widely used in classification tasks. Once the top predictor variables were identified, a parsimonious RF model was created using these variables. 
+
+The RF classification algorithm produces the best result and is more efficient if the optimal values for the hyperparameters are used. The RF classification algorithm in GEE was used, and despite this algorithm requires five hyperparameters (i.e, numberOfTrees, variablesPerSplit, minLeafPopulation, bagFraction and maxNodes) to run, the most important hyperparmeters requiring tuning are the number of trees to grow (*numberOfTrees*), and the number of covariates per split  (*variablesPerSplit*). Owing to computational reasons, the tuning of optimal values for *numberOfTrees* and *variablesPerSplit* were conducted in R environment. A grid search approach was used, the values for *variablesPerSplit* ranged from 1 to 332 while a set of values was specified for *numberOfTrees* (10,20,50,500). The *numberOfTrees* and *variablesPerSplit* values that produced an RF model with the highest accuracy were selected as the optimal values. The optimal vaalues for *variablesPerSplit* and *numberOfTrees* were 89 and 500, respectively.
+
 
 #### Cross validation
+
+To minimise overfitting, 10-fold cross validation was conducted. 
+
+An RF classification model was trained using the 332 covariates and optimal hyperparameter values in probability mode to predict cover classes. The predictor variables were assessed to remove redundant variables. Methods such as correlation analysis, principal component analysis and separability indices can be used to select the optimal predictor variables for RF models. However, in this study, we used the mean decrease impurity method ([Breiman, 2000](https://doi.org/10.1023/A:1010933404324)), which is built into the RF algorithm in the GEE and widely used in classification tasks. Once the top predictor variables were identified, a parsimonious RF model was created using these variables. 
+
+
 
 
 
