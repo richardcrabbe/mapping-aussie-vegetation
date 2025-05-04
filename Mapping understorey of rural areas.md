@@ -168,6 +168,32 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 |BSI |$${(SWIR2+Red)}-{(NIR+Blue)}\over\{(SWIR2+Red)}+{(NIR+Blue)}$$|[Bera et al., 2020](https://doi.org/10.1007/s42489-020-00060-1)|
 
 
+*Table 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
+|Covariate|Cohort|Formula|Reference|
+|:----|:----|:---|:---|
+|blue|spectral|| |
+|green |spectral|| |
+|red|spectral|| |
+|nir|spectral|| |
+|swir1|spectral|| |
+|siwr2 |spectral|| |
+|blue_p20|spectral|| |
+|blue_p80 |spectral|| |
+|green_p20|spectral|||
+|green_p80|spectral|||
+|red_p20|spectral|||
+|red_p80|spectral|||
+|nir_p20 |spectral|||
+|nir_820 |spectral|||
+| swir1_p20|spectral|||
+| swir1_p80|spectral|||
+|swir2_p20 |spectral|||
+| swir2_p80|spectral|||
+| |spectral|||
+| |spectral|||
+| |spectral|||
+| |spectral|||
+
 
 
 
