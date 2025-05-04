@@ -191,10 +191,53 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 | swir2_p80|spectral|||
 |ND_blue_green_p20 |SI|||
 | ND_blue_green_p80|SI|||
-| |SI|||
-| |SI|||
-| |SI|||
-| |SI|||
+|ND_blue_red_p20 |SI|||
+| ND_blue_red_p80|SI|||
+|ND_blue_nir_p20 |SI|||
+|ND_blue_nir_p80 |SI|||
+| ND_blue_swir1_p20|SI|||
+|ND_blue_swir1_p80 |SI|||
+| ND_blue_swir2_p20|SI|||
+|ND_blue_swir2_p80 |SI|||
+|ND_green_red_p20 |SI|||
+|ND_green_red_p80 |SI|||
+| ND_green_nir_p20|SI|||
+| ND_green_nir_p80|SI|||
+| ND_green_swir1_p20|SI|||
+|ND_green_swir1_p80 |SI|||
+|ND_green_swir2_p20 |SI|||
+|ND_green_swir2_p80 |SI|||
+|ND_red_swir1_p20 |SI|||
+| ND_red_swir1_p80|SI|||
+| ND_red_swir2_p20|SI|||
+| ND_red_swir2_p80|SI|||
+| ND_nir_red_p20|SI|||
+|ND_nir_red_p80 |SI|||
+| ND_nir_swir1_p20|SI|||
+|ND_nir_swir1_p80 |SI|||
+|ND_nir_swir2_p20 |SI|||
+|ND_nir_swir2_p80 |SI|||
+|ND_swir1_swir2_p20 |SI|||
+| ND_swir1_swir2_p80|SI|||
+|EVI_p20 |SI|||
+|EVI_p80 |SI|||
+| SAVI_p20|SI|||
+| SAVI_p80|SI|||
+| IBI_p20|SI|||
+|IBI_p80 |SI|||
+|blue_stdDev |STA|||
+| green_stdDev|STA|||
+|red_stdDev|STA|||
+| nir_stdDev|STA|||
+| swir1_stdDev|STA|||
+|swir2_stdDev |STA|||
+| ND_green_swir1_stdDev|STA|||
+|ND_nir_red_stdDev |STA|||
+| ND_nir_swir2_stdDev|STA|||
+| phase2019|PHE|||
+| amp2019|PHE|||
+
+
 
 
 
