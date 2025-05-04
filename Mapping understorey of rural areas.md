@@ -275,19 +275,17 @@ The biophysical conditions of plant species, including annual and perennial gras
 
 ### Topographic covariates
 
-The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, sine of aspect and cosine of aspect. The sine of aspect measures deviation from east (eastness) and the cosine aspect explains deviation from north (northness). The pixel size of the DEM was 1m, so all topographical variables were geometrically corrected to 10m using the bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. Table 3 shows the topographic covariates- elevation, slope, aspect, eastness and northness. Note that the topographic covariates remain unchanged between years.
+The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, sine of aspect and cosine of aspect. The sine of aspect measures deviation from east (eastness) and the cosine aspect explains deviation from north (northness). The pixel size of the DEM was 1m, so all topographical variables were geometrically corrected to 10m using the bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. Table 3 shows the topographic covariates- elevation, slope, aspect, eastness and northness. Note that the topographic covariates remained same regardless of the study year. 
+
 
 ### Other covariates
 
-The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation.
+The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation. In this study, we assumed that the reference label for sampling plots remained unchaged between years, meaning if plot A was labelled class X in 2019, the class ID will remain same in subsequent years. The longitude and latitude in decimal degrees were the covariates and remained same regardless of the study year.
 
 
 ### Random forest classification
 
-Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as the RF is not limited by data structure and minimises overfitting the data [Breiman, 2000](https://doi.org/10.1023/A:1010933404324). Additionally, the RF is computationally less expensive to implement as only a few hyperparameters require tuning.  The RF randomly selects a proportion of the instances to train a decision tree while replacing the samples to be re-used in the next iteration. Sampling a subset of the instances with replacement to create decision trees is called boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final decision tree is obtained through majority voting. Fig. 3 summarises how the Random Forest classification algorithm functions. The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, the number of the predictor variables to use, and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*. The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1 and 10. The *bagFraction* ranged between 10% and 90% at an interval of 10. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
-
-
-
+Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as the RF is not limited by data structure and minimises overfitting the data [Breiman, 2000](https://doi.org/10.1023/A:1010933404324). Additionally, the RF is computationally less expensive to implement as only a few hyperparameters require tuning.  The RF randomly selects a proportion of the instances to train a decision tree while replacing the samples to be re-used in the next iteration. Sampling a subset of the instances with replacement to create decision trees is called boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final decision tree is obtained through majority voting. Fig. 3 summarises how the RF classification algorithm functions. 
 
 
 
@@ -297,15 +295,32 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 
 
+The RF classification algorithm in GEE was used, requiring the tuning for hyperparameters such as the number of trees to grow, the number of the predictor variables to use, and the proportion of instances to train a decision tree at every iteration. In GEE, these hyperparameters are the *numberOfTrees*, *variablesPerSplit*, and *bagFraction*. The *numberOfTrees* values tested ranged between 10 and 150 at an interval of 10, *variablesPerSplit* values ranged between 1 and 10. The *bagFraction* ranged between 10% and 90% at an interval of 10. The *numberOfTrees*, *variablesPerSplit*, and *bagFraction* with the highest accuracy were used as the optimal values for model training. 
 
 
 #### Data partitioning, selecting optimal predictors and classification
 
-The reference data was used to randomly sample pixels for each cover class, which was then split into two sets, with 80% of the samples representing the training set, while the remaining was used for evaluating the accuracy of the Random Forest model. A Random Forest classification model was trained using the predictor variables and optimal hyperparameter values in probability mode to predict cover classes. The predictor variables were assessed to remove redundant variables. Methods such as correlation analysis, principal component analysis and separability indices can be used to select the optimal predictor variables for RF models. However, in this study, we used the mean decrease impurity method ([Breiman, 2000](https://doi.org/10.1023/A:1010933404324)), which is built into the RF algorithm in the GEE and widely used in classification tasks. Once the top predictor variables were identified, a parsimonious RF model was created using these variables. 
+The reference data was used to randomly sample pixels for each cover class, which was then split into two sets, with 80% of the samples representing the training set, while the remaining was used for evaluating the accuracy of the RF model. 
+
+
+#### Hyperparameter tuning
+A Random Forest classification model was trained using the predictor variables and optimal hyperparameter values in probability mode to predict cover classes. The predictor variables were assessed to remove redundant variables. Methods such as correlation analysis, principal component analysis and separability indices can be used to select the optimal predictor variables for RF models. However, in this study, we used the mean decrease impurity method ([Breiman, 2000](https://doi.org/10.1023/A:1010933404324)), which is built into the RF algorithm in the GEE and widely used in classification tasks. Once the top predictor variables were identified, a parsimonious RF model was created using these variables. 
+
+#### Cross validation
+
+
+
+#### Ranking the covariates
+
 
 
 #### Evaluation of the Random Forest model
 
+- accuracy based on training set (cross validation)
+
+- accuracy based on test set
+
+- 
 The test set was used to evaluate the accuracy of the RF classifier in that the user's accuracy, prouducer's accuracy, and F-1 score were computed from a confusion matrix table. To quantify the uncertainty associated with the Random Forest model, Monte Carlo simulation and Conformal Prediction methods were explored. While the Monte Carlo method is widely used for uncertainty quantification ([Canters et al.,2002](https://doi.org/10.1080/13658810110099143)) and ([Cockx et al., 2014](https://doi.org/10.1016/j.jag.2014.03.016)), the Conformal Prediction is a recent method in Earth Observation, and in contrast to Monte Carlo the Conformal Prediction method makes no assumption about data distribution and is model agnostic, supporting all classical and deep learning artificial intelligence models ([Singh et al., 2024](https://doi.org/10.48550/arXiv.2401.06421)). The RF model produced class membership probabilities for each pixel and was used for the post-hoc Monte Carlo simulation and Conformal Prediction to report model uncertainty. 
 
 
