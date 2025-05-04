@@ -92,7 +92,7 @@ Through the LiDAR data, the ACT government has created a canopy cover layer in b
 
 
 
-### Sentinel-2 satellite imagery
+### Sentinel-2 satellite imagery and processing
 
 Sentinel-2 is one of the Earth observation satellite missions operated through the Copernicus Program under the European Space Agency (ESA). The Sentinel-2, launched in 2015, carries a multispectral instrument that collects optical imagery of differing native resolutions at a planetary scale. Table 1 describes the spectral bands of Sentinel-2, including the key use and spatial resolution.
 
@@ -116,13 +116,44 @@ Sentinel-2 is one of the Earth observation satellite missions operated through t
 |B12 (Shortwave infrared 2) |land monitoring|20|
 
 
-In this project, the Sentinel-2 spectral bands were used as they provide high resolution imagery and are suited for vegetation monitoring. The Sentinel-2 imagery over the study areas acquired from 2018 to 2013 was used as this date aligns with the field observation data. To ensure that the electromagnetic energy recorded by the sensor was reflected off the targets of interest, the Bottom of the Atmosphere (BoA) Sentinel-2 imagery retrieved from the Copernicus Open Access Hub via Google Earth Engine was used. However, there was no BoA product for 2018, so the Top of the Atmposphere (ToA) product was collected and corrected for atmospheric influence using the sensor insensitive radiative transfer model in GEE [(Yin et al., 2022)](https://doi.org/10.5194/gmd-15-7933-2022). Once the BoA imagery was obtained for all years, a bidirectional reflectance distribution function was applied to minimise errors due to temporal variations in the sun-sensor viewing geometry. Image pixels affected by cloud and cloud shadow were masked using the quality assessment bands. The project adapted the pre-analysis techniques, including cloud/shadow, atmospheric correction and BRDF methods by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) to convert the ToA or BoA imagery to analysis ready data (ARD).  Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 20m resolution was spatially downscaled to 10m using the nearest neighbourhood geometric resampling method to preserve the original reflectance values and harmonise the data. The Sentinel-2 imagery from 2018 to 2023 (inclusisve) was analysed.
+In this project, the Sentinel-2 spectral bands were used as they provide high resolution imagery and are suited for vegetation monitoring. The Sentinel-2 imagery over the study areas acquired from 2019 to 2013 was used as this date aligns with the field observation data. To ensure that the electromagnetic energy recorded by the sensor was reflected off the targets of interest, the Bottom of the Atmosphere (BoA) Sentinel-2 imagery retrieved from the Copernicus Open Access Hub via Google Earth Engine was used. A Sentinel-2 image tile is approximately 110km x 110km, the study area was completely covered by four different image tiles. The number of Sentinel-2 images varied between the annual vegetation growth calendars (Jun-May) in that 216, 216, 214, 212, and 222 images for 2019, 2020, 2021, 2022 and 2023, respectively, were used. Despite the Sentinel-2 BOA products are potentially free from atmospheric effects, additional imgage preprocessing was conducted to deal with cloud cover, cloud shadow and distortions due to sun-satellite viewing angle.   
 
-Cloud and cloud shadow detection and masking using google product. This was done for each image. clipped image to ROI and then applied the BRDF function to correction for errors dues to variations in satellite viewing angle over time.
+
+#### Cloud and cloud shadow masking
+
+Cloud cover, cloud shadow and other atmospheric effects in the imagery were corrected by identifying and masking the affected pixels using the Sentinel-2-specific quality assessment, Cloud Score+ product develoed by Google [Pasquarella et al. (2023)](https://ieeexplore.ieee.org/document/10208818). The cumulative distribution function of possible cloud score values not lower than 70% were used as the threshold for retaining cloud-free pixels. The Harmonized Landsat and Sentinel-2 (HLS) GEE module by [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) was used for further image processing. 
+
+#### BRDF correction
+
+The nadir view angles of the Sentinel-2 satellites is not temporally invariant, causing dircetional reflecction on surface materials which can be accounted for via a bidirectional reflectance distribution function (BRDF) [Roy et al. (2017)](https://doi.org/10.1016/j.rse.2017.06.019). The BRDF within the HLS module [Berra et al. (2024)](https://doi.org/10.3390/rs16152695) was applied to minimise errors in the imagery due to temporal variations in the sun-sensor viewing geometry. 
+
+#### Sentinel-2 image composites 
+
+Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 20m resolution was spatially downscaled to 10m using the nearest neighbourhood geometric resampling method to preserve the original reflectance values and harmonise the data. The Sentinel-2 has 13 spectral bands, but only the blue, green, red, nir, swir1 and swir2 were used. In this study, one year of images is regarded as a composite, thus, five different image composites were analysed in this study since the study period spans 2019-2023.
+
+#### Sentinel-2 derivatives and annual statistics 
+
+The standard deviation and mediod [Flood (2013)](https://doi.org/10.3390/rs5126481) were computed for the blue, green, red, nir, swir1, and swir2 bands. Give the growth pattern may vary between years, the medoid of the 20th and 80th percentile were included in the yearly compsite. The medoid was computed using the GEE composite module developed by [Principe (2019)](https://github.com/fitoprincipe/geetools-code-editor). Additionally, we computed the standard deviation of the normalised difference for the nir and swir2, green and swir, and nir and red. The bands in the Sentiel-2 composites were used to calculate additional covariates.
+
+
+The bands in the composites were used to calculate a series of
+covariates. Table Table A.1 provides an overview of covariates used in
+the study including the spatial resolution. The letters ND indicate that
+the normalized difference between the first and second bands were
+calculated, p20 and p80 refer to the 20th and 80th percentile respectively.
+For some combinations there are more common names such as
+Normalized Difference Water Index (NDWI, McFeeters, 1996), Normalized
+Burn Ratio (NBR, Key and Benson, 1999), Normalized Difference
+Snow Index (NDSI, Salomonson and Appel, 2004) and Normalized
+Difference Vegetation Index (NDVI, Rouse et al., 1974). The source or
+calculation for the other covariates are described in the next paragraphs
+
+
+
+
+
+
 A module was used to compute medoid, standard deviation, and 20th and 80th percentile.
-
-#### Spectral indices
-
 The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices were obtained from the bands applying different arithmetic operations; despite the many spectral indices available in literature, only those that require the nominal resolution (10m) bands and are relevant to the project were utilised. The spectral indices, include the normalised difference vegetation index (NDVI), normalised difference water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). Table 2 details the spectral indices, formulae and principal references.  
 
 
