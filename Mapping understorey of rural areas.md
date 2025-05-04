@@ -131,48 +131,24 @@ The nadir view angles of the Sentinel-2 satellites is not temporally invariant, 
 
 Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 20m resolution was spatially downscaled to 10m using the nearest neighbourhood geometric resampling method to preserve the original reflectance values and harmonise the data. The Sentinel-2 has 13 spectral bands, but only the blue, green, red, nir, swir1 and swir2 were used. In this study, one year of images is regarded as a composite, thus, five different image composites were analysed in this study since the study period spans 2019-2023.
 
-#### Sentinel-2 derivatives and annual statistics 
+#### Sentinel-2 covariates
 
-The standard deviation and mediod [Flood (2013)](https://doi.org/10.3390/rs5126481) were computed for the blue, green, red, nir, swir1, and swir2 bands. Give the growth pattern may vary between years, the medoid of the 20th and 80th percentile were included in the yearly compsite. The medoid was computed using the GEE composite module developed by [Principe (2019)](https://github.com/fitoprincipe/geetools-code-editor). Additionally, we computed the standard deviation of the normalised difference for the nir and swir2, green and swir, and nir and red. The bands in the Sentiel-2 composites were used to calculate additional covariates.
-
-
-The bands in the composites were used to calculate a series of
-covariates. Table Table A.1 provides an overview of covariates used in
-the study including the spatial resolution. The letters ND indicate that
-the normalized difference between the first and second bands were
-calculated, p20 and p80 refer to the 20th and 80th percentile respectively.
-For some combinations there are more common names such as
-Normalized Difference Water Index (NDWI, McFeeters, 1996), Normalized
-Burn Ratio (NBR, Key and Benson, 1999), Normalized Difference
-Snow Index (NDSI, Salomonson and Appel, 2004) and Normalized
-Difference Vegetation Index (NDVI, Rouse et al., 1974). The source or
-calculation for the other covariates are described in the next paragraphs
+The standard deviation and mediod [Flood (2013)](https://doi.org/10.3390/rs5126481) were computed for the blue, green, red, nir, swir1, and swir2 bands. Give the growth pattern may vary between years, the medoid of the 20th and 80th percentile were included in the yearly compsite. The medoid was computed using the GEE composite module developed by [Principe (2019)](https://github.com/fitoprincipe/geetools-code-editor). Additionally, we computed the standard deviation of the normalised difference for the nir and swir2, green and swir, and nir and red. The bands in the Sentiel-2 composites were used to calculate additional covariates (Table 3). The ND prefixing some of the covariates represents the normalised difference between the first and second bands computed as |NDVI|$${band1-band2}\over{band1+band2}$$|, while  p20 and p80 refer to the 20th and 80th percentile respectively. Amongst the ND bands are widely used spectral indices, such as Normalised Difference Vegetation Index (NDVI, [Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)), Normalised Difference Water Index ([NDWI, McFeeters, 1996](https://doi.org/10.1080/01431169608948714)) and ([Gao, 1996](https://doi.org/10.1016/S0034-4257(96)00067-3)), and Normalised Burn Ratio ([NBR, Key and Benson, 199](https://www.frames.gov/catalog/3356)). The other spectral indices included were the soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI). Table 2 details the formulae and principal references of these additional spectral indices.  
 
 
+*Table 2. The equations and references for soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI).*
 
-
-
-
-A module was used to compute medoid, standard deviation, and 20th and 80th percentile.
-The ARD was analysed to extract spectral indices that measure the biophysical conditions of the grasses. Spectral indices were obtained from the bands applying different arithmetic operations; despite the many spectral indices available in literature, only those that require the nominal resolution (10m) bands and are relevant to the project were utilised. The spectral indices, include the normalised difference vegetation index (NDVI), normalised difference water index (NDWI), soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI), green chlorophyll vegetation index (GCVI), and bare soil index (BSI). Table 2 details the spectral indices, formulae and principal references.  
-
-
-*Table 2. Spectral indices derived from the Sentinel-2 imagery. NIR = near infrared and SWIR = shortwave infrared.*
 |Index|Formula|Reference| 
 |:----|:----|:---|
-|NDVI|$${NIR-Red}\over{NIR+Red}$$|[Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)|
-|NDWI|$${NIR-SWIR2}\over{NIR+SWIR2}$$|[Gao, 1996](https://doi.org/10.1016/S0034-4257(96)00067-3)|
 |SAVI|$$\left({NIR-Red}\over{NIR+Red+0.5}\right)×{1.5}$$|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
 |EVI |$$\left({NIR-Red}\over{NIR+6×Red-7.5×Blue+1}\right)× {2.5}$$|[Huete et al., 2002](https://doi.org/10.1016/S0034-4257(02)00096-2)|
 |IBI |$$\left({NIR}\over{NIR+Red}\right) + \left({Green}\over{Green+SWIR1}\right)$$|[Xu, 2008](https://doi.org/10.1080/01431160802039957)|
 
 
 
-
+Sxity-three covariates were obtained from an annual Sentinel-2 composite. Table 3 shows these covariates for the 2019 composite only. The same number of covariates were obtained for 2020, 2021, 2022 and 2023, but were not shown.
 
 *Table 3. Covariates for 2019 only. The cohorts of the covariates derived from the Sentinel-2 imagery are spectral features (SP), spectral indices (SI), and statistic (STA). The phenology covariates (PHE) were derived from Sentinel-1, topographical covariates (TOP) were from the ACT LiDAR data and the spatial coordinates of the reference data representing the longitude and latitude (LL) covariates were used to account for spatial autocorrelation.*
-
-
 
 |Covariate|Cohort|Formula|Reference|
 |:----|:----|:---|:---|
@@ -292,14 +268,18 @@ Annual image collection for the spectral indices, GLCM textural metrics and SNIC
 
 Sentinel-1 is another Earth observation satellite mission operated by the ESA, launched into orbit in 2013, to monitor the environment from space regardless of atmospheric and weather conditions. The Sentinel-1 carries a sensor that transmits and records microwave energy that bounces off environmental targets, including grasslands. Sentinel-1 is a synthetic aperture radar system that measures the amplitude and phase of microwave energy in multiple polarisations. Because the Sentinel-1 uses artificial microwave energy, it can penetrate cloud cover and take photos of the Earth anytime. Thus, the Sentinel-1 complements the Sentinel-2 for continuous mapping of the environment while providing spectral information that characterises the variations in structural and moisture conditions of the vegetation ([Saatchi et al., 1995](https://doi.org/10.1029/95JD00852)). The Sentinel-1 typically transmits the microwave energy in vertical orientation and records the return signal in vertical and horizontal orientations, making the Sentinel-1 a dual-polarisation system in that the data comprises VV and VH polarisation bands. The Sentinel-1 sensor can be operated in four different modes; the imagery obtained from the interferometric wide swath mode (IW) is recommended and available for land monitoring ([Prats-Iraola et al., 2015](https://doi.org/10.1109/IGARSS.2015.7327018)). This study used imagery from the IW mode that was already pre-processed to a ground range detected product (i.e., analysis ready Sentinel-1 data) by the ESA and was retrievable from the GEE data catalog. The pixel size of the ground range detected Sentinel-1 imagery is 10m, and this is created from single look complex imagery by applying a multi-look algorithm. Further preprocessing steps, such as thermal noise removal, radiometric calibration and terrain correction were performed before making the data available in GEE. Given the physical structure of the vegetation canopy is more sensitive to the VH polarisation, only this band was used in this study. The inherent speckle noise associated with the Sentinel-1 imagery was not filtered out, as spatial filtering algorithms lower the spectral and spatial variability required to differentiate pixels. 
 
-#### Phenological variables extracted from the Sentinel-1
+#### Phenology covariates from the Sentinel-1
 
-The biophysical conditions of plant species, including annual and perennial grasses, change through the growth calendar. While perennial grasses may be photosynthetically active throughout the year, annual grasses may disappear during the dry or low rainfall periods. The growth phenology of the plants can be vital information to differentiate between grass types. Sentinel-1, in contrast to the optical Sentinel-2 imagery, is not affected by cloud cover or shadow; thus, multitemporal Sentinel-1 data was anlysed to extract phenological information about the species. A Fourier harmonics function was applied to the Sentinel-1 time series data to compute amplitude and phase bands whereby the amplitude explains the variance in the original time series and the phase angle denotes the time associated with the peak of the curve ([Jakubauskas et al., 2001](https://www.asprs.org/wp-content/uploads/pers/2001journal/april/2001_apr_461-470.pdf)). The amplitude and phase bands were adjusted to spatially align with the regions of interest and the Sentinel-2 data and pixels that were not grassland were masked using the method discussed earlier. Annual composites of the Sentinel-1 imagery were created to extract the phenological information of the plants. Additional composites, including maximum, medoid, 20th, and 80th percentile of the phase and amplitude information, were created through the annual composites. [Poortinga et al., (2019)](https://doi.org/10.3390/rs11070831) used a similar approach in a land cover classification project conducted in Myanmar.
+The biophysical conditions of plant species, including annual and perennial grasses, change through the growth calendar. While perennial grasses may be photosynthetically active throughout the year, annual grasses may disappear during the dry or low rainfall periods. The growth phenology of the plants can be vital information to differentiate between grass types. Sentinel-1, in contrast to the optical Sentinel-2 imagery, is not affected by cloud cover or shadow; thus, multitemporal Sentinel-1 data was anlysed to extract phenological information about the species. A Fourier harmonics function was applied to the Sentinel-1 time series data to compute amplitude and phase bands whereby the amplitude explains the variance in the original time series and the phase angle denotes the time associated with the peak of the curve ([Jakubauskas et al., 2001](https://www.asprs.org/wp-content/uploads/pers/2001journal/april/2001_apr_461-470.pdf)). The amplitude and phase bands were adjusted to spatially align with the regions of interest and the Sentinel-2 data and pixels that were not grassland were masked using the method discussed earlier. Annual composites of the Sentinel-1 imagery were created to extract the phenological information of the plants. Table 3 shows the amplitude and phase covariates indicative of plant phenology for 2019 only. *Additional composites, including maximum, medoid, 20th, and 80th percentile of the phase and amplitude information, were created through the annual composites. [Poortinga et al., (2019)](https://doi.org/10.3390/rs11070831) used a similar approach in a land cover classification project conducted in Myanmar*.
 
 
-### Topographic variables
+### Topographic covariates
 
-The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, and ruggedness index, in QGIS 3.10. The pixel size of the DEM was 1m, so all topographical variables were geometrically corrected to 10m using the bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. In GEE, the elevation, slope, aspect, and ruggedness index images were added to the composite images from Sentinel-2 and Sentinel-1 to compose a single image of several bands.
+The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, sine of aspect and cosine of aspect. The sine of aspect measures deviation from east (eastness) and the cosine aspect explains deviation from north (northness). The pixel size of the DEM was 1m, so all topographical variables were geometrically corrected to 10m using the bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. Table 3 shows the topographic covariates- elevation, slope, aspect, eastness and northness. Note that the topographic covariates remain unchanged between years.
+
+### Other covariates
+
+The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation.
 
 
 ### Random forest classification
