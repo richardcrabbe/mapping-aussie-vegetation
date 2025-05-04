@@ -171,24 +171,24 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 *Table 1. Characteristics of Sentinel-2 spectral bands, including key use and spatial resolution.*
 |Covariate|Cohort|Formula|Reference|
 |:----|:----|:---|:---|
-|blue|spectral|| |
-|green |spectral|| |
-|red|spectral|| |
-|nir|spectral|| |
-|swir1|spectral|| |
-|siwr2 |spectral|| |
-|blue_p20|spectral|| |
-|blue_p80 |spectral|| |
-|green_p20|spectral|||
-|green_p80|spectral|||
-|red_p20|spectral|||
-|red_p80|spectral|||
-|nir_p20 |spectral|||
-|nir_820 |spectral|||
-| swir1_p20|spectral|||
-| swir1_p80|spectral|||
-|swir2_p20 |spectral|||
-| swir2_p80|spectral|||
+|blue|SP|| |
+|green |SP|| |
+|red|SP|| |
+|nir|SP|| |
+|swir1|SP|| |
+|siwr2 |SP|| |
+|blue_p20|SP|| |
+|blue_p80 |SP|| |
+|green_p20|SP|||
+|green_p80|SP|||
+|red_p20|SP|||
+|red_p80|SP|||
+|nir_p20 |SP|||
+|nir_820 |SP|||
+| swir1_p20|SP|||
+| swir1_p80|SP|||
+|swir2_p20 |SP|||
+| swir2_p80|SP|||
 |ND_blue_green_p20 |SI|||
 | ND_blue_green_p80|SI|||
 |ND_blue_red_p20 |SI|||
@@ -236,6 +236,13 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 | ND_nir_swir2_stdDev|STA|||
 | phase2019|PHE|||
 | amp2019|PHE|||
+| elevation|TOP|||
+|slope |TOP|||
+|aspect |TOP|||
+| eastness|TOP|||
+| northness|TOP|||
+|longitude |LL|||
+| latitude|LL|||
 
 
 
