@@ -189,10 +189,12 @@ The ARD was analysed to extract spectral indices that measure the biophysical co
 | swir1_p80|spectral|||
 |swir2_p20 |spectral|||
 | swir2_p80|spectral|||
-| |spectral|||
-| |spectral|||
-| |spectral|||
-| |spectral|||
+|ND_blue_green_p20 |SI|||
+| ND_blue_green_p80|SI|||
+| |SI|||
+| |SI|||
+| |SI|||
+| |SI|||
 
 
 
