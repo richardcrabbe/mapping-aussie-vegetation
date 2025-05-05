@@ -59,7 +59,9 @@ Fig. 2 is an overview of the cardinal workflow.
 
 
 
-![image](https://github.com/user-attachments/assets/30fd2cb9-38be-4f28-acc1-62c254bfdcff)|
+
+
+![image](https://github.com/user-attachments/assets/35a8af89-bb0b-4a1d-8448-46fba6726266)|
 |:--:|
 | *Fig. 2. An overview of the workflow, including the datasets and principal methods employed.*|
 
