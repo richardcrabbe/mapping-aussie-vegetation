@@ -79,14 +79,12 @@ Google Earth Engine (GEE) Java Script API, R and QGIS were employed in this stud
 
 Field survey data was collected from 2019 to 2023 (inclusive), in which experts from the ACT government conducted visual discrimination of grasses. The field sampling plots were randomly selected with each plot size equivalent to $400m^2$ (i.e., 20m by 20m) to suit the nominal ground sampling distance of the Sentinel-2 satellite. The geographic coordinates of a plot were collected using a handheld GPS with a horizontal accuracy of approximately 5m. The observer recorded the botanical composition in each plot, including a fraction of vegetation cover, bare soil, and level of diversity categorised as low  quality native, moderate quality native and high quality native. The vegetation cover comprised proportions of native C3 and C4 plants and exotic annual and perennial plants. Post-field processing of the data was done to remove bad data points. The vegetation cover of the plots was varied, so plots with a minimum of 70% cover and contained level of diversity information were retained for the analysis. The high quality native and moderate quality native plots were merged to increase the sample size. 
 
-A ratio of the proportion of native plants to exotic perennials was computed and used to label plots, low quality native, high quality native or exotic, using a threshold of 0.5. If the ratio is larger than 0.5, the plot is labelled native; otherwise, the plot is presumed to be dominated by an exotic grass. The label data was used to build, train and validate the machine learning classifier.
-
-The ACT Vegetation Map and Plant Community Type (PCT) map layers were used to identify the regions of interest. The ACT Vegetation Map is a spatial layer for which native and derived vegetation in the ACT are classified into 64 plant communities utilising high-resolution aerial optical and LiDAR imagery (1-5m grid resolution), stereo pair interpretation, and extensive field data and existing reports ([ACT Government, 2024](https://actmapi-actgov.opendata.arcgis.com/datasets/ACTGOV::actgov-vegetation-map-2023/about)). The scale of the ACT Vegetation Map is 1:10000 and the attributes table provides a detailed description of the features, such as the dominant tree species, dominant shrub species, dominant ground cover species, canopy cover, understory and shrub cover, and vegetation community structure (i.e., woodland, forest, grassland). The PCT is another ACT map product that delineates the extent (via ongorund GPS  mapping) and ecological zones (via the assessment of attributes related to vegetation structure, floristic composition, and level of disturbance) of the plant communities ([ACT Government, 2024](https://cdn.arcgis.com/home/item.html?id=88e1076a4db243a797f7ce0f22b9db8d)). The ACT Vegetation Map and PCT contain grassland polygon features, which were retrieved using the spatial analysis tool in QGIS 3.10. The grassland layer for lowland ACT was used to identify the regions of interest for the study.
+The label data was used to build, train and validate the machine learning classifier.
 
 A digital elevation model, with a ground sampling distance of 1m, acquired through a LiDAR survey over the ACT in 2020, was used to characterise the topography of the study regions. elevation, slope, Aspect, Eastness and northness
 
 
-Through the LiDAR data, the ACT government has created a canopy cover layer in both raster and vector file formats. In this study, the canopy cover layer was used to exclude pixels that were not grasslands.
+ACT canopy cover data. The ACT canopy cover raster layer, derived from high-resolution (1m) LiDAR data and classified into surface types including trees, shrubs and grass, was used to mask out all surface types except grasslands.
 
 
 
@@ -129,11 +127,11 @@ The nadir view angles of the Sentinel-2 satellites is not temporally invariant, 
 
 #### Sentinel-2 image composites 
 
-Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 20m resolution was spatially downscaled to 10m using the nearest neighbourhood geometric resampling method to preserve the original reflectance values and harmonise the data. The Sentinel-2 has 13 spectral bands, but only the blue, green, red, nir, swir1 and swir2 were used. In this study, one year of images is regarded as a composite, thus, five different image composites were analysed in this study since the study period spans 2019-2023.
+Since the Sentinel-2 satellites acquire data at varied native spatial resolutions, the imagery obtained at spectral bands with 20m resolution was spatially downscaled to 10m using the nearest neighbourhood geometric resampling method to preserve the original reflectance values and harmonise the data. The Sentinel-2 has 13 spectral bands, but only the blue, green, red, nir, swir1 and swir2 were used. In this study, one year of images is regarded as a composite, thus, five different image composites were analysed since the study period spans 2019-2023.
 
 #### Sentinel-2 covariates
 
-The standard deviation and mediod [Flood (2013)](https://doi.org/10.3390/rs5126481) were computed for the blue, green, red, nir, swir1, and swir2 bands. Give the growth pattern may vary between years, the medoid of the 20th and 80th percentile were included in the yearly compsite. The medoid was computed using the GEE composite module developed by [Principe (2019)](https://github.com/fitoprincipe/geetools-code-editor). Additionally, we computed the standard deviation of the normalised difference for the nir and swir2, green and swir, and nir and red. The bands in the Sentiel-2 composites were used to calculate additional covariates (Table 3). The ND prefixing some of the covariates represents the normalised difference between the first and second bands computed as |NDVI|$${band1-band2}\over{band1+band2}$$|, while  p20 and p80 refer to the 20th and 80th percentile respectively. Amongst the ND bands are widely used spectral indices, such as Normalised Difference Vegetation Index (NDVI, [Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)), Normalised Difference Water Index ([NDWI, McFeeters, 1996](https://doi.org/10.1080/01431169608948714)) and ([Gao, 1996](https://doi.org/10.1016/S0034-4257(96)00067-3)), and Normalised Burn Ratio ([NBR, Key and Benson, 199](https://www.frames.gov/catalog/3356)). The other spectral indices included were the soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI). Table 2 details the formulae and principal references of these additional spectral indices.  
+The standard deviation and mediod were computed for the blue, green, red, nir, swir1, and swir2 bands. The medoid is analogous to the univariate median, however, it is more insensitive to outliers and applicable to multi-dimensional data such as multispectral imagery. Further details on medoid is given in ([Flood, 2013](https://doi.org/10.3390/rs5126481)). In this study, annual is defined as the period from June to May the following year to mark the phenological growth calendar of the plants. Given the growth pattern may vary between years, the medoid of the 20th and 80th percentile were included in the yearly compsite. The medoid was computed using the GEE composite module developed by [Principe (2019)](https://github.com/fitoprincipe/geetools-code-editor). Additionally, we computed the standard deviation of the normalised difference for the nir and swir2, green and swir, and nir and red. The bands in the Sentiel-2 composites were used to calculate additional covariates (Table 3). The ND prefixing some of the covariates represents the normalised difference between the first and second bands computed as |NDVI|$${band1-band2}\over{band1+band2}$$|, while  p20 and p80 refer to the 20th and 80th percentile respectively. Amongst the ND bands are widely used spectral indices, such as Normalised Difference Vegetation Index (NDVI, [Rouse et al., 1973](https://ntrs.nasa.gov/citations/19740022614)), Normalised Difference Water Index ([NDWI, McFeeters, 1996](https://doi.org/10.1080/01431169608948714)) and ([Gao, 1996](https://doi.org/10.1016/S0034-4257(96)00067-3)), and Normalised Burn Ratio ([NBR, Key and Benson, 199](https://www.frames.gov/catalog/3356)). The other spectral indices included were the soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI). Table 2 details the formulae and principal references of these additional spectral indices.  
 
 
 *Table 2. The equations and references for soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI).*
@@ -146,7 +144,7 @@ The standard deviation and mediod [Flood (2013)](https://doi.org/10.3390/rs51264
 
 
 
-Sxity-three covariates were obtained from an annual Sentinel-2 composite. Table 3 shows these covariates for the 2019 composite only. The same number of covariates were obtained for 2020, 2021, 2022 and 2023, but were not shown.
+Sxity-three covariates were obtained from an annual Sentinel-2 composite. Table 3 shows these covariates for the 2019 composite only. The same number of covariates were obtained for 2020, 2021, 2022 and 2023, but have not been shown.
 
 *Table 3. Covariates for 2019 only. The cohorts of the covariates derived from the Sentinel-2 imagery are spectral features (SP), spectral indices (SI), and statistic (STA). The phenology covariates (PHE) were derived from Sentinel-1, topographical covariates (TOP) were from the ACT LiDAR data and the spatial coordinates of the reference data representing the longitude and latitude (LL) covariates were used to account for spatial autocorrelation.*
 
@@ -226,51 +224,14 @@ Sxity-three covariates were obtained from an annual Sentinel-2 composite. Table 
 | latitude|LL|||
 
 
-
-
-
-
-#### Textural and segmentataion 
-
-Naturally, spatial relationships exist between the grass types, and this can be leveraged to improve discrimination between species. In image analysis, the spatial relationship between pixels can be described through a textural analysis of the brightness values recorded by the electromagnetic detector. In this project, the grey level co-occurrence metrics (GLCM) by [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) were explored as the method is widely used in similar studies, including [Mohammadpour et al., 2022](https://doi.org/10.3390/rs14184585), [Zhang et al., 2024](https://doi.org/10.1080/15481603.2024.2385170), and [Bazzo et al., 2024](https://doi.org/10.1016/j.ecoinf.2024.102813). The GLCM, a second order statistical analysis of an image, is employed by identifying a pixel in a pre-determined moving window of pixels and comparing the relationships between the focal pixel and neighbouring pixels in a specific direction and distance. Through descriptive statistical methods, many textural metrics can be computed. In the GEE, eighteen GLCM metrics, sourced from the works of [Haralick et al., 1973](https://doi.org/10.1109/TSMC.1973.4309314) and [Conners et al., 1984](https://sdoi.org/10.1016/0734-189X(84)90197-X), can be calculated. However, the relevance of the metrics is study-specific, and for this reason, only five of the metrics were explored in this study (Table 3). These were the sum average (AVG), variance (VAR), contrast (CON), inverse difference moment (IDM) and entropy (ENT). The formulae for the metrics are from [Hall-Beyer, 2017)](https://doi.org/10.1080/01431161.2016.1278314).
-
-
-
-*Table 3. Grey level co-occurrence metrics derived from the Sentinel-2, including contrast (CON), inverse difference moment (IDM), entropy (ENT), average (AVG) and variance (VAR) of grey levels. N is the sample size, while Pi,j represents the probability of values i (labels of the columns) and j (labels of the rows) occurring in adjacent pixels in the original image within the pre-determined neighbourhood window.*
-|Metric|Formula|Description|
-|:----|:----|:---|
-|CON|$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-j} \right)^2 $$|local contrast|
-|IDM|$$\sum_{i,j=0}^{N-1}  {P_{i,j}\over 1+ \left( {i-j} \right)^2} $$|homogeneity|
-|ENT |$$\sum_{i,j=0}^{N-1} P_{i,j} \left( {-lnP_{i,j}} \right)$$|randomness in grey-levels|
-|AVG|$$\sum_{i,j=0}^{N-1}  i\left(P_{i,j}\right)$$|mean grey-levels|
-|VAR  |$$\sum_{i,j=0}^{N-1}  P_{i,j} \left( {i-μ_i} \right)^2 $$|spread in grey-levels|
-
-
-
-To compute the GLCM metrics in GEE, an 8-bit grey-scale imagery is required. Although many approaches for selecting single-band imagery for the GLCM textural analysis exist, including using an NDVI layer, a recent method by [Tassi  and Vizzari., 2020](https://doi.org/10.3390/rs12223776) leveraging the NIR, Red, and Blue bands was used. A linear combination of the bands was used as: <br>
-
-
-
-
-**$\(0.30×NIR)+(0.59×Red)+(0.11×Green)$** 
-
-
-
-The GLCM contrast, NDVI, and BSI were combined using user-defined thresholds to mask out pixels that were not grassland.
-
-
-Image segmentation is another method to explore the capability of the Sentinel-2 to differentiate between the grasses as pixels with similar spatial and spectral attributes, such as colour, luminance and texture, are clustered together to form homogeneous superpixels referred to as spectral objects or clusters. Image segmentation methods perform object-based analysis of the pixels and can remove redundant data. The Simple Non-Iterative Clustering (SNIC) algorithm by [Achanta and Susstrunk, 2017](https://doi.org/10.1109/CVPR.2017.520) was used to segment the Sentinel-2 pixels into spectral clusters. The SNIC algorithm requires input variables such as compactness factor for spatial distance weighting and connectivity and neighbourhood size for efficient grouping of the pixels. The SNIC input parameters used by [Tassi and Vizzari, 2020](https://doi.org/10.3390/rs12223776) for a land cover classification study in Europe were replicated in this study. The SNIC clusters were used as a predictor variable.
-
-
-Annual image collection for the spectral indices, GLCM textural metrics and SNIC clusters were created, from which composites such as maximum, medoid, 20th and 80th percentile spectral information were computed. The medoid is analogous to the univariate median, however, it is more insensitive to outliers and applicable to multi-dimensional data such as multispectral imagery. Further details on medoid is given in ([Flood, 2013](https://doi.org/10.3390/rs5126481)). Annual is defined as the period from June to May the following year to mark the phenological growth calendar of the plants. To streamline computation time, only the medoid composites were used to extract the GLCM textural metrics and SNIC clusters.
-
 ### Sentinel-1
 
 Sentinel-1 is another Earth observation satellite mission operated by the ESA, launched into orbit in 2013, to monitor the environment from space regardless of atmospheric and weather conditions. The Sentinel-1 carries a sensor that transmits and records microwave energy that bounces off environmental targets, including grasslands. Sentinel-1 is a synthetic aperture radar system that measures the amplitude and phase of microwave energy in multiple polarisations. Because the Sentinel-1 uses artificial microwave energy, it can penetrate cloud cover and take photos of the Earth anytime. Thus, the Sentinel-1 complements the Sentinel-2 for continuous mapping of the environment while providing spectral information that characterises the variations in structural and moisture conditions of the vegetation ([Saatchi et al., 1995](https://doi.org/10.1029/95JD00852)). The Sentinel-1 typically transmits the microwave energy in vertical orientation and records the return signal in vertical and horizontal orientations, making the Sentinel-1 a dual-polarisation system in that the data comprises VV and VH polarisation bands. The Sentinel-1 sensor can be operated in four different modes; the imagery obtained from the interferometric wide swath mode (IW) is recommended and available for land monitoring ([Prats-Iraola et al., 2015](https://doi.org/10.1109/IGARSS.2015.7327018)). This study used imagery from the IW mode that was already pre-processed to a ground range detected product (i.e., analysis ready Sentinel-1 data) by the ESA and was retrievable from the GEE data catalog. The pixel size of the ground range detected Sentinel-1 imagery is 10m, and this is created from single look complex imagery by applying a multi-look algorithm. Further preprocessing steps, such as thermal noise removal, radiometric calibration and terrain correction were performed before making the data available in GEE. Given the physical structure of the vegetation canopy is more sensitive to the VH polarisation, only this band was used in this study. The inherent speckle noise associated with the Sentinel-1 imagery was not filtered out, as spatial filtering algorithms lower the spectral and spatial variability required to differentiate pixels. 
 
 #### Phenology covariates from the Sentinel-1
 
-The biophysical conditions of plant species, including annual and perennial grasses, change through the growth calendar. While perennial grasses may be photosynthetically active throughout the year, annual grasses may disappear during the dry or low rainfall periods. The growth phenology of the plants can be vital information to differentiate between grass types. Sentinel-1, in contrast to the optical Sentinel-2 imagery, is not affected by cloud cover or shadow; thus, multitemporal Sentinel-1 data was anlysed to extract phenological information about the species. A Fourier harmonics function was applied to the Sentinel-1 time series data to compute amplitude and phase bands whereby the amplitude explains the variance in the original time series and the phase angle denotes the time associated with the peak of the curve ([Jakubauskas et al., 2001](https://www.asprs.org/wp-content/uploads/pers/2001journal/april/2001_apr_461-470.pdf)). The amplitude and phase bands were adjusted to spatially align with the regions of interest and the Sentinel-2 data and pixels that were not grassland were masked using the method discussed earlier. Annual composites of the Sentinel-1 imagery were created to extract the phenological information of the plants. Table 3 shows the amplitude and phase covariates indicative of plant phenology for 2019 only. *Additional composites, including maximum, medoid, 20th, and 80th percentile of the phase and amplitude information, were created through the annual composites. [Poortinga et al., (2019)](https://doi.org/10.3390/rs11070831) used a similar approach in a land cover classification project conducted in Myanmar*.
+The biophysical conditions of plant species, including annual and perennial grasses, change through the growth calendar. While perennial grasses may be photosynthetically active throughout the year, annual grasses may disappear during the dry or low rainfall periods. The growth phenology of the plants can be vital information to differentiate between grass types. Sentinel-1, in contrast to the optical Sentinel-2 imagery, is not affected by cloud cover or shadow; thus, multitemporal Sentinel-1 data was anlysed to extract phenological information about the species. A Fourier harmonics function was applied to the Sentinel-1 time series data to compute amplitude and phase bands whereby the amplitude explains the variance in the original time series and the phase angle denotes the time associated with the peak of the curve ([Jakubauskas et al., 2001](https://www.asprs.org/wp-content/uploads/pers/2001journal/april/2001_apr_461-470.pdf)). The amplitude and phase bands were adjusted to spatially align with the regions of interest and the Sentinel-2 data. The Sentinel-1 pixels that were not grassland were masked using the methods discussed in section XXX. Annual composites of the Sentinel-1 imagery were created to extract the phenological information of the plants. Table 3 shows the amplitude and phase covariates indicative of plant phenology for 2019 only. [Poortinga et al., (2019)](https://doi.org/10.3390/rs11070831) used a similar approach in a land cover classification project conducted in Myanmar.
+
 
 
 ### Topographic covariates
@@ -278,13 +239,13 @@ The biophysical conditions of plant species, including annual and perennial gras
 The ACT digital elevation model (DEM) derived from an aerial LiDAR survey was used to compute topographical variables, such as slope, aspect, sine of aspect and cosine of aspect. The sine of aspect measures deviation from east (eastness) and the cosine aspect explains deviation from north (northness). The pixel size of the DEM was 1m, so all topographical variables were geometrically corrected to 10m using the bilinear interpolation method to match the Sentinel-2 pixels and for easy import into GEE. Table 3 shows the topographic covariates- elevation, slope, aspect, eastness and northness. Note that the topographic covariates remained same regardless of the study year. 
 
 
-### Other covariates
+### Additional covariates
 
 The spatial coordinates of the reference plots were included as additional covariates to account for the sensitivity of the RF to spatial autocorrelation. In this study, we assumed that the reference label for sampling plots remained unchaged between years, meaning if plot **A** was labelled class **X** in 2019, the class ID will remain same in other years. The longitude and latitude in decimal degrees were the covariates and these remained same regardless of the study year.
 
 There were 65 covariates per the yearly composite of Sentinel-2 and Sentinel-1 imagery, making a total of 325 covariates for the five years. Plus, the topographic variables and spatial coordinates of the reference plots, 332 covariates were used for the image classification analysis.
 
-### Random forest classification
+### Image classification using Random Forest 
 
 Random Forest (RF) is a decision tree ensemble machine learning algorithm widely used for land cover monitoring as the RF is not limited by data structure and minimises overfitting the data [Breiman, 2000](https://doi.org/10.1023/A:1010933404324). Additionally, the RF is computationally less expensive to implement as only a few hyperparameters require tuning.  The RF randomly selects a proportion of the instances to train a decision tree while replacing the samples to be re-used in the next iteration. Sampling a subset of the instances with replacement to create decision trees is called boostrap aggregating (i.e., bagging). The RF creates multiple decision trees to avoid overfitting; the final decision tree is obtained through majority voting. Fig. 3 summarises how the RF classification algorithm functions. 
 
@@ -296,12 +257,22 @@ Random Forest (RF) is a decision tree ensemble machine learning algorithm widely
 
 
 
+#### Producing grassland layer
+
+
+The RF classification algorithm was used to classify the remote sensing imagery. A hierarchical approach was adopted to classify the image pixels into exotic, high quality and low quality native grasses. There were diferent surface types in the imagery, including tree cover, grass cover, shrub cover, water bodies, roads, buildings and open land. This can increase the uncertainty in the RF model, while the model may perform well discriminating grassland pixels only. To this end, an initial RF classification was performed to classify the imagery into three broad themes- water, artificial and grassland. The artificial class includes buildings, roads and concrete surfaces. In this RF classification, only limited covarites were used to avoid computational memory issues in GEE. The medoid and the standard deviation and percentiles (20th and 80th) of the medoid derived from the Sentinel-2 and the phenological variables from the Sentinel-1 were the covariates used. The ACT LiDAR canopy cover data was used to mask out trees and shrubs, leaving behind grasslands only. With the aid of a high-resolution RGB Google imagery, ACT LiDAR canopy cover and the Sentinel-2 imagery, reference data for water, artificial and grassland were collected using GEE. The reference data were polygons of similar dimensions, but given the spatial variability 25 polygons defining water, 27 for aritificial and 50 for grassland were used. Through the RF classification algorithm in GEE, the covariates and reference data were used to classify the image pixels into water, artificial and grassland. Details of the RF classification have been sacrificed here as this is covered in section XXX. The accuracy of the RF classification on unseen reference data for grassland was 98%. The grassland pixels were retrieved, masking out all other pixels. The grassland layer was used to refine the region of interest for the main RF classification analysis in the sections below.
 
 
 
-#### Data partitioning
+#### Classifying the grassland layer
 
-The reference data was used to randomly sample pixels for each cover class. The reference sample size was 3137, and this was split into train and test sets with 90% of the samples for model training and the remaining was used for evaluating the accuracy of the model. The training and testing sample sizes were 2824 and 313, respectively (Table **X**).
+
+
+
+##### Data partitioning
+
+
+The reference data collected by the ACT were used to randomly sample pixels for exotic (EXO), high-quality (HQN) and low-quality (LQN) grassland. The reference sample size was 3137, and this was split into train and test sets with 90% of the samples for model training and the remaining was used for evaluating the accuracy of the model. The training and testing sample sizes were 2824 and 313, respectively (Table **X**).
 
 
 *Table 3. The reference sample size for exotic, high-quality native and low-quality native grasses.*
@@ -314,18 +285,18 @@ The reference data was used to randomly sample pixels for each cover class. The 
 
 
 
-#### Hyperparameter tuning 
+##### Hyperparameter tuning 
 
 The RF classification algorithm produces the best result and is more efficient if the optimal values for the hyperparameters are used. The RF classification algorithm in GEE was used, and despite this algorithm requires five hyperparameters (i.e, numberOfTrees, variablesPerSplit, minLeafPopulation, bagFraction and maxNodes) to run, the most important hyperparmeters requiring tuning are the number of trees to grow (*numberOfTrees*), and the number of covariates per split  (*variablesPerSplit*). Owing to computational reasons, the tuning of optimal values for *numberOfTrees* and *variablesPerSplit* were conducted in R environment. A grid search approach was used, the values for *variablesPerSplit* ranged from 1 to 332 while a set of values was specified for *numberOfTrees* (10,20,50,500). The *numberOfTrees* and *variablesPerSplit* values that produced an RF model with the highest accuracy were selected as the optimal values. The optimal vaalues for *variablesPerSplit* and *numberOfTrees* were 89 and 500, respectively.
 
-#### Cross validation and training of RF model
+##### Cross validation and training of RF model
 
 A good-fit model is a model capable of generalising effectively well to data that was not used to teach the model, so to assess this a 10-fold cross-validation strategy was employed in the R environment. The training dataset was randomly partitioned into 10 equally sized sub-samples called folds (Kohavi, 1995) and for every run of the cross-validation, one fold was reserved for validation, while the model was trained on the remaining nine folds. This process was repeated 10 times, varying the one-fold data for model validation in each iteration. Each of the ten folds was used extacly once for model validation. The model results from the 10-iterations were averaged to assess the generalisability of the model to unseen data. <br>
 
 The RF classification model was trained using the 332 covariates and optimal hyperparameter values in probability mode in R and also GEE for the spatial representation of the grasses. 
 
 
-#### Ranking the covariates
+##### Ranking the covariates
 
 The covariates were assessed to remove redundant ones. Methods such as correlation analysis, principal component analysis and separability indices can be used to select the optimal predictor variables for RF models. However, in this study, we used the mean decrease impurity method ([Breiman, 2000](https://doi.org/10.1023/A:1010933404324)), which is built into the RF algorithm in the GEE and widely used in classification tasks. Once the top covariates were identified, a parsimonious RF model was created using these covariates. 
 
@@ -338,7 +309,7 @@ The covariates were assessed to remove redundant ones. Methods such as correlati
 
 
 
-#### Evaluation of the Random Forest model
+##### Evaluation of the Random Forest model
 
 - accuracy based on training set (cross validation)
 
