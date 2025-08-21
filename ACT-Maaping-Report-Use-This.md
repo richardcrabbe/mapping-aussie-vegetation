@@ -895,6 +895,7 @@ Export.image.toAsset({
 
 ## Stage 2- Random Forest CLASSIFICATION 1- Detecting grassland only areas 
 
+```JavaScript
 //this "FIELD" is a larger polygon of the one above as it includes all the vegetation zones of the ACT
 var ACT_VEGBOUND = 
     /* color: #0b4a8b */
@@ -2102,6 +2103,7 @@ Export.image.toAsset({
   maxPixels:1e13
   //shardSize: 2560
 });
+```
 
 
 
