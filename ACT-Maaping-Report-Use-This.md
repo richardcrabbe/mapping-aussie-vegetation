@@ -415,6 +415,68 @@ The test set was used to evaluate the accuracy of the RF classifier in that the 
 
 
 
+## Scripts from the Google Earth Engine (JavaScript API)
+
+### Stage 1- Processing Datasets
+
+```JavaScript
+//boundary of ACT
+var ACT_boundOfficial =ee.FeatureCollection('projects/ee-racrabbe3/assets/ACT-BOUNDARY')          
+//Map.addLayer(ACT_boundary, {}, 'ACT')
+//Map.addLayer(ACT_boundOfficial)
+
+//this is the ACT lowland vegetation shapefile, can be used to filter the satellite imagery
+//created 2nd March 2025, more recent than the "FIELD" above. The "FIELD" was used to create the first probability maps
+var fcol = ee.FeatureCollection("projects/ee-racrabbe3/assets/ACTGOV_Lowland_Vegetation_Map_2023")
+//var fcol = fcol.bounds()
+//Map.addLayer(fcol)
+
+//second "FIELD" created more recently on 2 March 2025; so mute the first "FIELD" above
+var fcol2 = fcol.map(function features(f){return f.convexHull()})
+//Map.addLayer(fcol2)
+var FIELD3 =fcol2.geometry()
+//print(FIELD2)
+//Map.addLayer(FIELD3)
+
+//var FIELD = fcol.geometry().convexHull()
+//Map.addLayer(FIELD)
+
+//var fcol4 = fcol3.simplify({'maxError': 0.5})
+//Map.addLayer(fcol4)
+
+//Map.addLayer(DEM)
+//Map.addLayer(DEM.clip(fcol3))
+
+//var fcol5 = fcol.geometry().convexHull()
+//Map.addLayer(fcol5)
+
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+//load up data and required libraries
+var elevation = ee.Image("projects/ee-racrabbe3/assets/ACT_DEM_2020_10m_GDA20").select('b1').rename('elevation')
+//var elevation = actLiDAR_DEM
+//print(elevation, 'elevation')
+var jrcImage = ee.Image("JRC/GSW1_0/GlobalSurfaceWater")
+//var composite = require('users/fitoprincipe/geetools:composite')
+//var funcHLS = require('users/geeberra/Modules:HLS_Module_v2');
+//var dem = ee.Image('projects/ee-racrabbe3/assets/ACT_DEM_2020_10m_GDA20')
+
+//image = covariates.addJRCAndTopo(image);
+//image = covariates.addCovariates(image);
+
+//********************************************************************************************************************
+
+
+//****LOAD REQUIRED MODULES AND DATA*******************************************************************************************************************
+var covariates = require("users/servirmekong/mrc:covariate_module");
+var composite = require('users/fitoprincipe/geetools:composite')
+var funcHLS = require('users/geeberra/Modules:HLS_Module_v2');
+
+
+```
+
 
 
 
