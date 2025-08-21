@@ -420,6 +420,100 @@ The test set was used to evaluate the accuracy of the RF classifier in that the 
 ### Stage 1- Processing Datasets
 
 ```JavaScript
+var CRACE_2 = 
+    ee.Geometry.Polygon(
+        [[[149.1119063550977, -35.21104403446435],
+          [149.11731178442946, -35.22317830810074],
+          [149.12632363455316, -35.235238912694896],
+          [149.1434042451702, -35.23425589042167],
+          [149.1436835232536, -35.223841600898176],
+          [149.1433190971777, -35.21118383661413],
+          [149.14469170371615, -35.18811277607007],
+          [149.13138793612154, -35.18818364989447],
+          [149.12134580359398, -35.18958583728357]]]),
+    aoi_2 = 
+    ee.Geometry.Polygon(
+        [[[148.94836853016415, -35.219220491535644],
+          [148.96004150379696, -35.276417837365265],
+          [149.04175231922665, -35.3307739470321],
+          [149.1001171873907, -35.27361498650361],
+          [148.97034118641415, -35.208000594872935]]]),
+    geometry = 
+    ee.Geometry.Polygon(
+        [[[148.82829009658553, -35.110536045139284],
+          [148.67448150283553, -35.88866803378386],
+          [148.98062637040647, -35.917974542761286],
+          [149.28696929580428, -35.93983027031052],
+          [149.44352447158553, -35.139739533100666],
+          [148.92442046767928, -35.108289189306234]]]),
+    geometry2 = 
+    ee.Geometry.Polygon(
+        [[[148.81479084916316, -35.28752016927877],
+          [149.0207845015069, -35.72240002362171],
+          [149.14026081986628, -35.71682526046451],
+          [149.17047322221003, -35.42640071411601],
+          [148.94525349564753, -35.21350253672814]]]),
+    ACT_VEGBOUND = 
+    ee.Geometry.Polygon(
+        [[[148.80998433060847, -35.29704783012935],
+          [149.05992329545222, -35.71403773262223],
+          [149.09837544388972, -35.71961269079874],
+          [149.09562886185847, -35.602456699024415],
+          [149.17527974076472, -35.59799021561819],
+          [149.15330708451472, -35.4683538180112],
+          [149.2123585981866, -35.35307018749132],
+          [149.35243428178035, -35.36874948969099],
+          [149.41972554154597, -35.31049673610865],
+          [149.29338276810847, -35.24322985703525],
+          [149.22059834428035, -35.210697510363424],
+          [149.20961201615535, -35.16580391048749],
+          [149.12858784623347, -35.11526897213073],
+          [148.87590229935847, -35.262294477952004]]]),
+    LQN = ee.Geometry.Polygon(
+        [[[149.10941487283642, -35.38969202031002],
+          [149.10967236490185, -35.38970514004468],
+          [149.1096830937379, -35.389490850778145],
+          [149.1094470593446, -35.389490850778145]]]),
+    HQN = ee.Geometry.Polygon(
+        [[[149.0435720803087, -35.29604149005351],
+          [149.0440548779314, -35.296032733418315],
+          [149.0440548779314, -35.295673710559676],
+          [149.04363645332506, -35.295673710559676]]]),
+    EXO = ee.Geometry.Polygon(
+        [[[149.2297814712063, -35.329886632792046],
+          [149.22978147114125, -35.3299675978516],
+          [149.23010333622304, -35.32999385673495],
+          [149.23010870064107, -35.329740020505234],
+          [149.2298082932314, -35.32971376153942]]]);
+//-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+var ACT_boundary = ee.Geometry.Polygon(
+        [[[148.82829009658553, -35.110536045139284],
+          [148.67448150283553, -35.88866803378386],
+          [148.98062637040647, -35.917974542761286],
+          [149.28696929580428, -35.93983027031052],
+          [149.44352447158553, -35.139739533100666],
+          [148.92442046767928, -35.108289189306234]]]);
+
+
+// FIELD was a manually created polygon containing majority of the reference data points
+/*
+var FIELD = ee.Geometry.Polygon(
+        [[[149.1019590046573, -35.121758791187766],
+          [148.9371640827823, -35.21774068699828],
+          [149.1253049519229, -35.42894922912131],
+          [149.30795265700104, -35.286710205738736],
+          [149.14384438063385, -35.12288204113921]]]);
+Map.addLayer(FIELD)
+*/
+
+//return to the "FIELD"above if this one below didnt work 
+var FIELD =ACT_VEGBOUND
+//set map center object
+Map.centerObject(FIELD, 10)
+
+//polygon limited to canopy cover data, used for clipping other data
+//var polygonClip = ee.FeatureCollection("projects/ee-racrabbe3/assets/ACT_canopyCover_ROI")//.bounds(1000) 
+
 //boundary of ACT
 var ACT_boundOfficial =ee.FeatureCollection('projects/ee-racrabbe3/assets/ACT-BOUNDARY')          
 //Map.addLayer(ACT_boundary, {}, 'ACT')
@@ -473,6 +567,327 @@ var jrcImage = ee.Image("JRC/GSW1_0/GlobalSurfaceWater")
 var covariates = require("users/servirmekong/mrc:covariate_module");
 var composite = require('users/fitoprincipe/geetools:composite')
 var funcHLS = require('users/geeberra/Modules:HLS_Module_v2');
+
+
+var bandIn_S2 = [ 'B2',  'B3',  'B4',  'B8', 'B11',    'B12'];
+    
+//BandOut will have the same name for all the sensors
+var bandOut = ['blue','green','red','nir','swir1','swir2'];
+
+//bands to use later to filter collection for reducer analysis
+var bandOut_2 = ['blue','green','red','nir','swir1','swir2', 'ND_green_swir1','ND_nir_red','ND_nir_swir2'];
+
+// Harmonized Sentinel-2 Level 2A collection.
+var s2 = ee.ImageCollection('COPERNICUS/S2_SR_HARMONIZED');
+var csPlus = ee.ImageCollection('GOOGLE/CLOUD_SCORE_PLUS/V1/S2_HARMONIZED');
+
+var QA_BAND = 'cs_cdf';
+var CLEAR_THRESHOLD = 0.70;
+
+//**************************************************************************************************************************
+//****GET IMAGE COLLECTION ******************************************************
+//Make image collection for each year
+var S2Col = s2
+    .filterBounds(ACT_boundary)
+    //.filterDate('2019-06-01', '2020-06-01')
+    .filter(ee.Filter.eq('SPACECRAFT_NAME', 'Sentinel-2A'))//.eq('SPACECRAFT_NAME', 'Sentinel-2A')
+    .linkCollection(csPlus, [QA_BAND])
+    .map(function(img) {
+      return img.updateMask(img.select(QA_BAND).gte(CLEAR_THRESHOLD).clip(FIELD));
+      //return img.updateMask(img.select(QA_BAND).gte(CLEAR_THRESHOLD));
+    }).select(bandIn_S2, bandOut);
+
+var collection2019 = S2Col.filterDate('2021-06-01', '2022-06-01') //***
+//Map.addLayer(collection2019, {min:0, max:2500, bands:['red', 'green', 'blue']}, 'collection2019')
+
+//Map.addLayer(FIELD)
+//Map.addLayer(ACT_VEGBOUND,{}, "ACT vegetation boundary drawn by Richard")
+//Map.addLayer(FIELD3)
+
+//***BRDF COLLECTION AND CLIP TO ROI***************************************************************************************
+
+//make BRDF layers and clip To ROI
+var imgS2019_BRDF = collection2019.map(funcHLS.applyBRDF);
+//var imgS2020_BRDF = collection2020.map(funcHLS.applyBRDF);
+//var imgS2021_BRDF = collection2021.map(funcHLS.applyBRDF);
+//var imgS2022_BRDF = collection2022.map(funcHLS.applyBRDF);
+//var imgS2023_BRDF = collection2023.map(funcHLS.applyBRDF);
+
+//print(imgS2019_BRDF, 'imgS2019_BRDF')
+//Map.addLayer(imgS2019_BRDF, {min:0, max:2500, bands:['red', 'green', 'blue']}, 'imgS2019_BRDF')
+
+//---1.compute the medoid bands //'EPSG:7855'
+var s2col2019_medoid = composite.medoid(imgS2019_BRDF).reproject({crs:'EPSG:32755',crsTransform:[10,0,600000,0,-10,6100000]}).select(bandOut)
+//print(s2col2019_medoid, 's2col2019_medoid')
+//Map.addLayer(s2col2019_medoid, {bands:['red', 'green', 'blue'], min:0, max:2500}, 's2col2019_medoid')
+
+
+
+
+//---2. apply the covariates function to generate additional covariates
+var imgS2019_BRDF_2 = imgS2019_BRDF.map(covariates.addCovariates).select(bandOut_2)
+//print(imgS2019_BRDF_2, "imgS2019_BRDF_2")
+
+//standard deviation composites for 2019
+var s2col2019_sd = imgS2019_BRDF_2.reduce(ee.Reducer.stdDev())
+.reproject({crs:'EPSG:32755',crsTransform:[10,0,600000,0,-10,6100000]});
+//print(s2col2019_sd, 's2col2019_sd'); //***SELECT
+
+
+
+//---3. the percentiles composite for 2019
+//set up a list to select relevant bands only 
+var list1 = ee.List.sequence(0,47) //list of bands to be selected out of the 72
+//var s2col2019_percentiles2 = s2col2019_percentiles2.select(list1)
+//print(s2col2019_percentiles2, 's2col2019_percentiles2')
+var imgS2019_BRDF_ACT = imgS2019_BRDF.map(covariates.addCovariates)
+var s2col2019_percentiles = imgS2019_BRDF_ACT.reduce(ee.Reducer.percentile([20,80]))
+.reproject({crs:'EPSG:32755',crsTransform:[10,0,600000,0,-10,6100000]}).select(list1);
+//print(s2col2019_percentiles, 's2col2019_percentiles')
+//Map.addLayer(s2col2019_percentiles, {bands:["red_p80", "green_p80","blue_p80"]}, "s2col2019_percentiles")
+
+
+/*
+Export.image.toAsset({
+  image: s2col2019_medoid,
+  description: 's2col2021_medoid_2',
+  assetId: 'users/racrabbe/covariate_s2col2021_medoid_2',  
+  //scale:10,
+  region: FIELD,
+  crs: 'EPSG:7855',
+  crsTransform: [1,0,658000,0,-1,6112000], //[10,0,600000,0,-10,6100000],
+  maxPixels:1e13
+  //shardSize: 2560
+});
+
+*/
+
+//--------------------------------------------------------------------------------------------------------
+
+//CANOPY COVER
+//var canopyc = ee.Image("projects/ee-racrabbe3/assets/ACT_Canopy_Cover_2020_1m_GDA2020")
+//print(canopyc, 'canopy cover')
+
+//mask out the tree cover pixels
+//var noCanopy = canopyc.updateMask(canopyc.select('b1').eq(0)).clip(ACT_boundOfficial)
+//Map.addLayer(canopyc.clip(ACT_boundary), {min:0, max:1, palette:['blue', 'red']}, 'canopyc')
+//Map.addLayer(noCanopy, null, 'canopyc')
+//Map.addLayer(field_data)
+
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+//*************************************************************************************************
+
+//***TOPOGRAPHICAL VARIABLES
+var topoBands = ["elevation","slope", "aspect","eastness","northness"]
+var topo = covariates.addJRCAndTopo(elevation).select(topoBands)
+//print(topo, 'topo')
+Map.addLayer(topo)
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+//***PHENOLOGICAL VARIABLES FROM SENTINEL-1
+//Aim: visualise the timeseries profile for EXO, HQN, LQN
+var trSet = ee.FeatureCollection("projects/ee-racrabbe3/assets/ACT-GRASSLAND-TRAININGSET-UNEQUAL-CLASS-gee-use-only")
+//Map.addLayer(trSet, {color:"red"}, "Training Set from R")
+
+var trSet2 = trSet.remap(["EXO","HQN","LQN"], [0, 1,2], "class")
+
+// function to conditionally set properties of feature collection
+var featureProperties = function(f){ 
+  var getProperty = f.get("class") 
+  var mapColours = ee.List(['red', 'green', 'blue']); 
+  
+  // use the class as index to lookup the corresponding display color
+  return f.set({style: {color: mapColours.get(getProperty)}})
+}
+
+// apply the function and view the results on map
+var styled =  trSet2.map(featureProperties)
+Map.addLayer(styled.style({styleProperty: "style"}), {}, 'Training Data Points in Colours')
+
+
+//var tsSet = ee.FeatureCollection ("projects/ee-racrabbe3/assets/ACT-GRASSLAND-TESTINGSET-UNEQUAL-CLASS-gee-use-only")
+//Map.addLayer(tsSet,{color:"yellow"}, "Testing Set from R")
+
+//*****************************************************************************************************************************************************************************************************************************************
+//Get S1 collection
+var s1Col = ee.ImageCollection("COPERNICUS/S1_GRD_FLOAT")
+.filterBounds(ACT_boundary)
+.filterDate('2019-06-01', '2024-06-01')
+.filter(ee.Filter.eq('instrumentMode', 'IW'))
+.filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING'))
+.map(function(image){return image.clip(LQN)})//FIELD
+.select('VH');
+
+
+//S1-Collection for each year
+//var s1Col2018 =s1Col.filterDate('2018-06-01', '2019-06-01')
+//var s1Col2019 =s1Col.filterDate('2019-06-01', '2020-06-01')
+//var s1Col2020 =s1Col.filterDate('2020-06-01', '2021-06-01')
+//var s1Col2021 =s1Col.filterDate('2021-06-01', '2022-06-01')
+//var s1Col2022 =s1Col.filterDate('2022-06-01', '2023-06-01')
+//var s1Col2023 =s1Col.filterDate('2023-06-01', '2024-06-01')
+
+//print(s1Col2019, 's1Col2019')
+//Map.addLayer(s1Col2019, null, 'Sentinel-1')
+
+//-----TIME SERIES ANALYSIS OF SENTINEL-1 SAR IMAGERY 
+// This field contains UNIX time in milliseconds.
+var timeField = 'system:time_start';
+
+// Use this function to add variables for VH, time and a constant to S1 imagery.
+var addVariables = function(image) {
+  // Compute time in fractional years since the epoch.
+  var date = ee.Date(image.get(timeField));
+  var years = date.difference(ee.Date('1970-01-01'), 'year');
+  // Return the image with the added bands.
+  return image
+    // Add an NDVI band.
+    //.addBands(image.normalizedDifference(['B5', 'B4']).rename('NDVI')).float()
+    // Add a time band.
+    .addBands(ee.Image(years).rename('t').float())
+    // Add a constant band.
+    .addBands(ee.Image.constant(1));
+};
+
+//****AMPLITUDE & PHASE 2019**************************************************************************************************
+
+// Now add variables 
+var filteredSentinel = s1Col//s1Col2023 
+  //.filterBounds(roi)
+  //.map(maskClouds)
+  .map(addVariables);
+
+
+// Plot a time series of VH at a single location.
+var s1Chart = ui.Chart.image.series(filteredSentinel.select('VH'), LQN)//FIELD >> EXO
+    .setChartType('ScatterChart')
+    .setOptions({
+      title: 'S1 VH time series at ROI',
+      trendlines: {0: {
+        color: 'CC0000'
+      }},
+      lineWidth: 1,
+      pointSize: 3,
+    });
+print(s1Chart);
+
+
+
+// Linear trend ----------------------------------------------------------------
+// List of the independent variable names
+var independents = ee.List(['constant', 't']);
+
+// Name of the dependent variable.
+var dependent = ee.String('VH');
+
+// Compute a linear trend.  This will have two bands: 'residuals' and 
+// a 2x1 band called coefficients (columns are for dependent variables).
+var trend = filteredSentinel.select(independents.add(dependent))
+    .reduce(ee.Reducer.linearRegression(independents.length(), 1));
+// Map.addLayer(trend, {}, 'trend array image');
+
+// Flatten the coefficients into a 2-band image
+var coefficients = trend.select('coefficients')
+  .arrayProject([0])
+  .arrayFlatten([independents]);
+
+// Compute a de-trended series.
+var detrended = filteredSentinel.map(function(image) {
+  return image.select(dependent).subtract(
+          image.select(independents).multiply(coefficients).reduce('sum'))
+          .rename(dependent)
+          .copyProperties(image, [timeField]);
+});
+
+
+// Plot the detrended results, an example using CRACE
+var detrendedChart = ui.Chart.image.series(detrended, LQN, null, 20) //FIELD >> EXO
+    .setOptions({
+      title: 'Detrended S1 time series at ROI',
+      lineWidth: 1,
+      pointSize: 3,
+    });
+print(detrendedChart);
+
+
+
+// Harmonic trend ----------------------------------------------------------------
+// Use these independent variables in the harmonic regression.
+var harmonicIndependents = ee.List(['constant', 't', 'cos', 'sin']);
+
+// Add harmonic terms as new image bands.
+var harmonicS2 = filteredSentinel.map(function(image) {
+  var timeRadians = image.select('t').multiply(2 * Math.PI);
+  return image
+    .addBands(timeRadians.cos().rename('cos'))
+    .addBands(timeRadians.sin().rename('sin'));
+});
+
+
+// The output of the regression reduction is a 4x1 array image.
+var harmonicTrend = harmonicS2
+  .select(harmonicIndependents.add(dependent))
+  .reduce(ee.Reducer.linearRegression(harmonicIndependents.length(), 1));
+  
+  // Turn the array image into a multi-band image of coefficients.
+var harmonicTrendCoefficients = harmonicTrend.select('coefficients')
+  .arrayProject([0])
+  .arrayFlatten([harmonicIndependents]);
+
+//print(harmonicTrendCoefficients, 'harmonicTrendCoefficients')
+
+// Compute fitted values.
+var fittedHarmonic = harmonicS2.map(function(image) {
+  return image.addBands(
+    image.select(harmonicIndependents)
+      .multiply(harmonicTrendCoefficients)
+      .reduce('sum')
+      .rename('fitted'));
+});
+
+
+
+// Plot the fitted model and the original data, CRACE as an example.
+print(ui.Chart.image.series(
+  fittedHarmonic.select(['fitted','VH']), LQN, ee.Reducer.mean(), 10) //FIELD >>EXO
+    .setSeriesNames(['VH', 'fitted'])
+    .setOptions({
+      title: 'Harmonic model: original and fitted values',
+      lineWidth: 1,
+      pointSize: 3,
+}));
+
+
+
+// Compute phase and amplitude.
+var phase2019 = harmonicTrendCoefficients.select('cos').atan2(
+            harmonicTrendCoefficients.select('sin')).rename('phase2019')//.reproject('EPSG:7855', [10,0,659891,0,-10,6111102]).rename('phase2019').clip(CRACE_2);
+            
+var amplitude2019 = harmonicTrendCoefficients.select('cos').hypot(
+                harmonicTrendCoefficients.select('sin')).rename('amp2019')//.reproject('EPSG:7855', [10,0,659891,0,-10,6111102]).rename('amp2019').clip(CRACE_2); //may have to log transform for visualisation purposes
+
+//print(amplitude2019, 'amplitude2019') 
+var phAmp_2019 = phase2019.addBands(amplitude2019)
+//print(phAmp_2019, 'phAmp_2019') //***SELECT
+//Map.addLayer(phAmp_2019, {bands: ["phase2019", "phase2019", "amp2019"]}, 'phAmp2019')
+
+
+//EXPORT S1 PHENOLOGY BANDS (PHASE AND AMPLITUDE) 
+Export.image.toAsset({
+  image: phAmp_2019,
+  description: 'phAmp_2023_phaseAndAmplitude',
+  assetId: 'projects/ee-racrabbe3/assets/covariate_phAmp2023',
+  //scale:10,
+  region: FIELD,
+  crs: 'EPSG:7855',
+  crsTransform: [1,0,658000,0,-1,6112000], //[10,0,600000,0,-10,6100000],
+  maxPixels:1e13
+  //shardSize: 2560
+});
 
 
 ```
