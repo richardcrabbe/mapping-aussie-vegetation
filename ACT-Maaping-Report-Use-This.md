@@ -153,6 +153,78 @@ Sixty-three covariates were obtained from an annual Sentinel-2 composite. Table 
 |Covariate|Cohort|
 |:----|:----|
 |blue|SP|
+|green |SP|
+|red|SP|
+|nir|SP|
+|swir1|SP|
+|siwr2 |SP|
+|blue_p20|SP|
+|blue_p80 |SP|
+|green_p20|SP|
+|green_p80|SP|
+|red_p20|SP|
+|red_p80|SP|
+|nir_p20 |SP|
+|nir_820 |SP|
+| swir1_p20|SP|
+| swir1_p80|SP|
+|swir2_p20 |SP|
+| swir2_p80|SP|
+|ND_blue_green_p20 |SI|
+| ND_blue_green_p80|SI|
+|ND_blue_red_p20 |SI|
+| ND_blue_red_p80|SI|
+|ND_blue_nir_p20 |SI|
+|ND_blue_nir_p80 |SI|
+| ND_blue_swir1_p20|SI|
+|ND_blue_swir1_p80 |SI|
+| ND_blue_swir2_p20|SI|
+|ND_blue_swir2_p80 |SI|
+|ND_green_red_p20 |SI|
+|ND_green_red_p80 |SI|
+| ND_green_nir_p20|SI|
+| ND_green_nir_p80|SI|
+| ND_green_swir1_p20|SI|
+|ND_green_swir1_p80 |SI|
+|ND_green_swir2_p20 |SI|
+|ND_green_swir2_p80 |SI|
+|ND_red_swir1_p20 |SI|
+| ND_red_swir1_p80|SI|
+| ND_red_swir2_p20|SI|
+| ND_red_swir2_p80|SI|
+| ND_nir_red_p20|SI|
+|ND_nir_red_p80 |SI|
+| ND_nir_swir1_p20|SI|
+|ND_nir_swir1_p80 |SI|
+|ND_nir_swir2_p20 |SI|
+|ND_nir_swir2_p80 |SI|
+|ND_swir1_swir2_p20 |SI|
+| ND_swir1_swir2_p80|SI|
+|EVI_p20 |SI|
+|EVI_p80 |SI|
+| SAVI_p20|SI|
+| SAVI_p80|SI|
+| IBI_p20|SI|
+|IBI_p80 |SI|
+|blue_stdDev |STA|
+| green_stdDev|STA|
+|red_stdDev|STA|
+| nir_stdDev|STA|
+| swir1_stdDev|STA|
+|swir2_stdDev |STA|
+| ND_green_swir1_stdDev|STA|
+|ND_nir_red_stdDev |STA|
+| ND_nir_swir2_stdDev|STA|
+| phase2019|PHE|
+| amp2019|PHE|
+| elevation|TOP|
+|slope |TOP|
+|aspect |TOP|
+| eastness|TOP|
+| northness|TOP|
+|longitude |LL|
+| latitude|LL|
+
 
 
 ### Sentinel-1
