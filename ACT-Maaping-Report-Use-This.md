@@ -337,7 +337,8 @@ Fig. 4 illustrates the potential of Sentinel-1 for monitoring the temporal chang
 
 
 
-<img width="1108" height="592" alt="image" src="https://github.com/user-attachments/assets/d42afe98-634d-428f-95e0-f607d6dd1e04" />|
+<img width="1108" height="592" alt="image" src="https://github.com/user-attachments/assets/d42afe98-634d-428f-95e0-f607d6dd1e04" />|  <img width="689" height="624" alt="image" src="https://github.com/user-attachments/assets/5e806b6a-c140-4d77-a8cb-a4c281431a34" />|
+
 |:--:|
 | *Fig. 4. A phenological growth profile for exotic, low-quality native and high-quality native grasslands. The profile was derived from the Sentinel-data.*|
 
