@@ -345,6 +345,17 @@ Fig. 4 illustrates the potential of Sentinel-1 for monitoring the temporal chang
 
 
 
+Fig. 5 is the Random Forest classification of the pixels into exotic, high-quality and low-quality grasslands. 
+
+
+
+
+<img width="429" height="603" alt="image" src="https://github.com/user-attachments/assets/8364b820-8a45-4e90-956f-36ef2ce6845a" />|
+|:--:|
+| *Fig. 5. The classification map produced from a Random Forest model.*|
+
+
+
 
 
 ## Conclusion
