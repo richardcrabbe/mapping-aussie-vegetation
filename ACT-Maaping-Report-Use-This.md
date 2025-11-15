@@ -331,6 +331,19 @@ The test set was used to evaluate the accuracy of the RF classifier in that the 
 
 ## Discussion
 
+### Phenogical growth profile of the grassland
+
+Fig. 4 illustrates the potential of Sentinel-1 for monitoring the temporal changes in grassland growth. The different grassland classes showed variation in maximum growth and this was captured by the Sentinel-1. The exotic grassland showed consistenly high backscatter values, especially at maximum growth, than the native vegetation. The backscatter for high-quality native, at the maximum growth, was consistenly higher than the low-quality natives. This suggests the Sentinel-1 alone can be used to discriminate exotic grassland from low-quality and high-quality natives.
+
+
+
+<img width="1108" height="592" alt="image" src="https://github.com/user-attachments/assets/d42afe98-634d-428f-95e0-f607d6dd1e04" />|
+|:--:|
+| *Fig. 4. A phenological growth profile for exotic, low-quality native and high-quality native grasslands. The profile was derived from the Sentinel-data.*|
+
+
+
+
 
 
 
