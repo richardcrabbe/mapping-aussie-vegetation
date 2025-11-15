@@ -324,12 +324,12 @@ The test set was used to evaluate the accuracy of the RF classifier in that the 
 
 
 
+
+
+
+
+
 ## Results
-
-
-
-
-## Discussion
 
 ### Phenogical growth profile of the grassland
 
@@ -405,6 +405,7 @@ Fig. 8 shows the top 20 predictor variables, the IBI measured in 2020 was the mo
 
 ## Conclusion
 
+The study demonstrated that the combination of Sentinel-1, Sentinel-2, and GIS data provides an opportunity to spectrally distinguish between exotic, low-quality native, and high-quality native grasslands in rural ACT. Random Forest was used to classify the pixels, achieving an accuracy over the test data ranging from 77% to 86%. 
 
 
 
