@@ -371,6 +371,11 @@ The classification map with the prediction probaility scores was produced, and e
 
 
 
+
+
+
+
+
 Fig. 7 explains the accuracy of the Random Forest model based on validation dataset using recall, precision, and F-score. The recall for HQN ws the highest, while the highest precision was observed in LQN. The combination of recall and precision provides the F-score, and the highest was observed for the HQN. However, the model prediction for the EXO was consistent. The accuracy ranged between 77 and 86%. 
 
 
@@ -386,10 +391,13 @@ Fig. 7 explains the accuracy of the Random Forest model based on validation data
 
 
 
+Fig. 8 shows the top 20 predictor variables, the IBI measured in 2020 was the most important variable followed by the standard deviation of NDVI recorded in 2019.
+
 
 <img width="749" height="545" alt="image" src="https://github.com/user-attachments/assets/c1a4fedb-5b87-43ef-8140-a18203cb75db" />|
 |:--:|
-| *Fig. 8. The accuracy of the Random Forest model, including the prediction probability for each pixel.*|
+| *Fig. 8. The twenty most important predictor variables for the detection of grassland types.*|
+
 
 
 
