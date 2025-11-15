@@ -385,7 +385,7 @@ Fig. 7 explains the accuracy of the Random Forest model based on validation data
 
 <img width="790" height="405" alt="image" src="https://github.com/user-attachments/assets/ff09577c-f111-4e39-925e-152faceea25a" />|
 |:--:|
-| *Fig. 7. The accuracy of the Random Forest model, including the prediction probability for each pixel.*|
+| *Fig. 7. The accuracy of the Random Forest model, including the prediction probability.*|
 
 
 
