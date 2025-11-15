@@ -138,6 +138,8 @@ The standard deviation and mediod were computed for the blue, green, red, nir, s
 
 *Table 2. The equations and references for soil-adjusted vegetation index (SAVI), enhanced vegetation index (EVI) and index-based built-up index (IBI).*
 
+
+
 |Index|Formula|Reference| 
 |:----|:----|:---|
 |SAVI|$$\left({NIR-Red}\over{NIR+Red+0.5}\right)×{1.5}$$|[Huete, 1998](https://doi.org/10.1016/0034-4257(88)90106-X)|
