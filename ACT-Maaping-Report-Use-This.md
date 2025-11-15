@@ -337,8 +337,7 @@ Fig. 4 illustrates the potential of Sentinel-1 for monitoring the temporal chang
 
 
 
-<img width="1108" height="592" alt="image" src="https://github.com/user-attachments/assets/d42afe98-634d-428f-95e0-f607d6dd1e04" />|  <img width="689" height="624" alt="image" src="https://github.com/user-attachments/assets/5e806b6a-c140-4d77-a8cb-a4c281431a34" />|
-
+<img width="1108" height="592" alt="image" src="https://github.com/user-attachments/assets/d42afe98-634d-428f-95e0-f607d6dd1e04" />|  
 |:--:|
 | *Fig. 4. A phenological growth profile for exotic, low-quality native and high-quality native grasslands. The profile was derived from the Sentinel-data.*|
 
@@ -354,6 +353,43 @@ Fig. 5 is the Random Forest classification of the pixels into exotic, high-quali
 <img width="429" height="603" alt="image" src="https://github.com/user-attachments/assets/8364b820-8a45-4e90-956f-36ef2ce6845a" />|
 |:--:|
 | *Fig. 5. The classification map produced from a Random Forest model.*|
+
+
+
+
+
+The classification map with the prediction probaility scores was produced, and example of this result is presented in Fig. 6 below.
+
+
+
+<img width="689" height="624" alt="image" src="https://github.com/user-attachments/assets/5e806b6a-c140-4d77-a8cb-a4c281431a34" />|
+|:--:|
+| *Fig. 6. The classification map produced from a Random Forest model, including the prediction probability for each pixel.*|
+
+
+
+
+
+
+Fig. 7 explains the accuracy of the Random Forest model based on validation dataset using recall, precision, and F-score. The recall for HQN ws the highest, while the highest precision was observed in LQN. The combination of recall and precision provides the F-score, and the highest was observed for the HQN. However, the model prediction for the EXO was consistent. The accuracy ranged between 77 and 86%. 
+
+
+
+
+<img width="790" height="405" alt="image" src="https://github.com/user-attachments/assets/ff09577c-f111-4e39-925e-152faceea25a" />|
+|:--:|
+| *Fig. 7. The accuracy of the Random Forest model, including the prediction probability for each pixel.*|
+
+
+
+
+
+
+
+
+<img width="749" height="545" alt="image" src="https://github.com/user-attachments/assets/c1a4fedb-5b87-43ef-8140-a18203cb75db" />|
+|:--:|
+| *Fig. 8. The accuracy of the Random Forest model, including the prediction probability for each pixel.*|
 
 
 
